@@ -1,0 +1,42 @@
+.dashboard-container {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+.dashboard-header {
+  text-align: left;
+  margin-bottom: 30px;
+}
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+.dashboard-card {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 50px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.dashboard-card h3 {
+  margin: 0;
+  font-size: 40px;
+  text-align: left;
+  color: #007bff;
+}
+
+.dashboard-card p {
+  font-size: 14px;
+  color: #555;
+  margin-top: 8px;
+}
+
+.dashboard-icon {
+  font-size: 30px;
+  float: right;
+  color: #007bff;
+}
