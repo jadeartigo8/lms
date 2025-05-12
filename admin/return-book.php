@@ -4,6 +4,10 @@ error_reporting(E_ALL);
 
 include '../connection/db.php';
 include '../security/crypt.php';
+include 'includes/logger.php';
+date_default_timezone_set('Asia/Manila');
+
+$logger = new Logger();
 
 if (strlen($_SESSION['alogin']) == 0) {
   header('location:index.php');
@@ -60,6 +64,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
   if ($stmt->execute()) {
     $_SESSION['msg'] = "Book marked as returned successfully.";
+    $logger->write("Book returned. ID: $decryptedID");
   } else {
     $_SESSION['error'] = "Failed to update record.";
   }
@@ -77,67 +82,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
   <title>Return Book</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="../css/styles.css">
-  <style>
-    /* RETURN BOOKS  */
-.return-form-container {
-  max-width: 600px;
-  margin: 40px auto;
-  background: #fff;
-  padding: 25px 30px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px #ccc;
-}
-
-.return-form-container h2 {
-  margin-bottom: 20px;
-}
-
-.book-image {
-  width: 120px;
-  height: auto;
-  border: 1px solid #ddd;
-  margin-bottom: 15px;
-}
-
-.form-group {
-  margin-bottom: 12px;
-}
-
-.form-group label {
-  display: block;
-  font-weight: bold;
-  margin-bottom: 6px;
-}
-
-.form-group input[type="text"],
-.form-group input[type="number"] {
-  width: 100%;
-  padding: 8px;
-  font-size: 14px;
-  border-radius: 4px;
-  border: 1px solid #ccc;
-}
-
-.form-actions {
-  margin-top: 20px;
-  text-align: center;
-}
-
-.btn-submit {
-  padding: 10px 20px;
-  background-color: #28a745;
-  color: #fff;
-  font-weight: bold;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.btn-submit:hover {
-  background-color: #218838;
-}
-
-  </style>
+  <link rel="stylesheet" href="../css/return-books.css">
 </head>
 
 <body>

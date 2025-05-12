@@ -4,6 +4,10 @@ error_reporting(E_ALL);
 
 include '../connection/db.php';
 include '../security/crypt.php';
+include 'includes/logger.php';
+date_default_timezone_set('Asia/Manila');
+
+$logger = new Logger();
 
 if (strlen($_SESSION['alogin']) == 0) {
     header('location:index.php');
@@ -45,7 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $isbn = $_POST['isbn'];
     $quantity = $_POST['quantity'];
 
-    $imageName = $book['image']; // default keep old image
+    $imageName = $book['image']; 
 
     if (isset($_FILES['image']) && $_FILES['image']['error'] == 0) {
         $uploadDir = "uploads/";
@@ -79,6 +83,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if ($stmt->execute()) {
         $_SESSION['updatemsg'] = "Book updated successfully.";
+        $logger->write("Book $title updated");
     } else {
         $_SESSION['error'] = "Failed to update book.";
     }

@@ -2,6 +2,11 @@
 session_start();
 error_reporting(E_ALL);
 include('../connection/db.php');
+include 'includes/logger.php';
+date_default_timezone_set('Asia/Manila');
+
+$logger = new Logger();
+
 
 
 if (strlen($_SESSION['alogin']) == 0) {
@@ -41,6 +46,7 @@ if (isset($_POST['change_credentials'])) {
 
                 $_SESSION['alogin'] = $newEmail;
                 $_SESSION['success'] = "Credentials updated successfully.";
+                $logger->write("Credentials updated.");
             } else {
                 throw new Exception("Current password is incorrect.");
             }

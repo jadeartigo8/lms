@@ -2,6 +2,12 @@
 session_start();
 include('../connection/db.php'); 
 include('includes/header.php'); 
+include 'includes/logger.php';
+date_default_timezone_set('Asia/Manila');
+
+$logger = new Logger();
+
+
 
 $error = "";
 $success = "";
@@ -46,10 +52,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           $stmt->bind_param("sssssi", $title, $category, $author, $isbn, $imageName, $quantity);
           if ($stmt->execute()) {
               $success = "Book added successfully!";
-              
+              $logger->write("Book is added. [$title]");
               $_POST = [];
           } else {
               $error = "Failed to add book.";
+              $logger->write("Failed to add a book.");
           }
       } else {
           $error = "SQL Error: " . $conn->error;

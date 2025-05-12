@@ -3,12 +3,13 @@ session_start();
 include('../connection/db.php');
 
 
+
 if (strlen($_SESSION['alogin']) == 0) {
   header('location:index.php');
   exit;
 }
 
-// Query Counts
+
 $totalBooks = $conn->query("SELECT SUM(quantity) AS total FROM books")->fetch_assoc()['total'];
 $availableBooks = $conn->query("SELECT COUNT(*) AS available FROM books WHERE quantity !=0")->fetch_assoc()['available'];
 $issuedBooks = $conn->query("SELECT COUNT(*) AS issued FROM issued_books")->fetch_assoc()['issued'];

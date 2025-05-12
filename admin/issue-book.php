@@ -4,6 +4,10 @@ date_default_timezone_set('Asia/Manila');
 
 include('../connection/db.php'); 
 include('includes/header.php'); 
+include 'includes/logger.php';
+
+
+$logger = new Logger();
 
 if (strlen($_SESSION['alogin']) == 0) {
     header('location:index.php');
@@ -70,6 +74,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if ($stmt->execute()) {
                 $conn->query("UPDATE books SET quantity = quantity - 1 WHERE book_id = $book_id");
                 $success = "Book issued successfully!";
+                $logger->write("Issued book: $book_title");
                 $_POST = []; 
             } else {
                 $error = "Error issuing book.";

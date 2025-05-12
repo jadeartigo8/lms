@@ -4,6 +4,10 @@ error_reporting(E_ALL);
 
 include '../connection/db.php';
 include '../security/crypt.php';
+include 'includes/logger.php';
+date_default_timezone_set('Asia/Manila');
+
+$logger = new Logger();
 
 
 function getStudentDetails($conn)
@@ -104,6 +108,7 @@ if (isset($_GET['del'])) {
 
     if ($stmt->execute()) {
         $_SESSION['delmsg'] = "Student deleted successfully.";
+        $logger->write("Student deleted. $decryptedID");
     } else {
         $_SESSION['delmsg'] = "Failed to delete student.";
     }

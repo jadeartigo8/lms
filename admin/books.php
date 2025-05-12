@@ -4,6 +4,10 @@ error_reporting(E_ALL);
 
 include '../connection/db.php';
 include '../security/crypt.php';
+include 'includes/logger.php';
+date_default_timezone_set('Asia/Manila');
+
+$logger = new Logger();
 
 if (strlen($_SESSION['alogin']) == 0) {
     header('location:index.php');
@@ -32,6 +36,7 @@ if (isset($_GET['del'])) {
 
     if (deleteBook($conn, $decryptedID)) {
         $_SESSION['delmsg'] = "Book deleted successfully.";
+        $logger->write("Book deleted.");
     } else {
         $_SESSION['delmsg'] = "Failed to delete book.";
     }

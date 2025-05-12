@@ -2,7 +2,10 @@
 session_start();
 include('../connection/db.php');
 include '../security/crypt.php';
-error_reporting(E_ALL);
+include 'includes/logger.php';
+date_default_timezone_set('Asia/Manila');
+
+$logger = new Logger();
 
 
 
@@ -82,6 +85,8 @@ if (isset($_POST['update'])) {
         
         if ($stmt->execute()) {
             $_SESSION['updatemsg'] = "Student information updated successfully.";
+            $logger->write("Student information updated. $first_name, $last_name");
+
             header('Location: reg-students.php');
             exit;
         } else {
