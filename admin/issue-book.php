@@ -67,7 +67,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } elseif ($quantity <= 0) {
             $error = "Book is out of stock.";
         } else {
-            $stmt = $conn->prepare("INSERT INTO issued_books (book_id, student_id, issued_date, return_date, return_status, fine, remarks)
+            $stmt = $conn->prepare("INSERT INTO issued_books (book_id, student_id, issued_date, due_date, return_status, fine, remarks)
                                     VALUES (?, ?, ?, ?, 0, '', ?)");
             $stmt->bind_param("issss", $book_id, $student_id, $issued_date, $return_date, $remarks);
 

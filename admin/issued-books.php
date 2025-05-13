@@ -16,7 +16,8 @@ function getIssuedBooks($conn)
   $sql = "SELECT ib.*, b.title, b.isbn, s.first_name, s.middle_name, s.last_name
             FROM issued_books ib
             JOIN books b ON ib.book_id = b.book_id
-            JOIN students s ON ib.student_id = s.student_id";
+            JOIN students s ON ib.student_id = s.student_id
+            ORDER BY ib.issued_date DESC";
   $result = $conn->query($sql);
 
   if ($result) {
@@ -24,7 +25,6 @@ function getIssuedBooks($conn)
       $issuedBooks[] = $row;
     }
   }
-
   return $issuedBooks;
 }
 
@@ -77,7 +77,7 @@ function getIssuedBooks($conn)
           <th>Book Title</th>
           <th>ISBN</th>
           <th>Issued Date</th>
-          <th>Return Date</th>
+          <th>Due Date</th>
           <th>Status</th>
           <th>Actions</th>
         </tr>
@@ -99,7 +99,7 @@ function getIssuedBooks($conn)
               <td>" . htmlentities($row['title'] ?? '') . "</td>
               <td>" . htmlentities($row['isbn'] ?? '') . "</td>
               <td>" . htmlentities($row['issued_date'] ?? '') . "</td>
-              <td>" . htmlentities($row['return_date'] ?? '') . "</td>
+              <td>" . htmlentities($row['due_date'] ?? '') . "</td>
               <td>{$status}</td>
               <td style='text-align:center;'>
                   <a href=\"return-book.php?id=" . urlencode($encryptedID) . "\" class=\"btn btn-sm btn-success\" >

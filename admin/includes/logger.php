@@ -1,4 +1,5 @@
 <?php
+date_default_timezone_set('Asia/Manila');
 class Logger {
     private $logFile;
 
@@ -19,7 +20,11 @@ class Logger {
 
     public function getLogs() {
         if (file_exists($this->logFile)) {
-            return file($this->logFile, FILE_IGNORE_NEW_LINES);
+            $lines = file($this->logFile, FILE_IGNORE_NEW_LINES);
+            $lines_reversed = array_reverse($lines);
+
+            return $lines_reversed;
+
         } else {
             return ["Log file not found."];
         }

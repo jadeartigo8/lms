@@ -39,9 +39,10 @@ if (strlen($_SESSION['login']) == 0) {
           <th>#</th>
           <th>Book Title</th>
           <th>Issued Date</th>
-          <th>Return Date</th>
+          <th>Due Date</th>
           <th>Fine</th>
           <th>Status</th>
+          <th>Actual Return</th>
 
         </tr>
       </thead>
@@ -61,15 +62,16 @@ if (strlen($_SESSION['login']) == 0) {
                       <td>{$cnt}</td>
                       <td>". htmlentities($row['title']?? '') ."</td>
                       <td>". htmlentities($row['issued_date']?? '') ."</td>
-                      <td>". htmlentities($row['return_date']?? '') ."</td>
+                      <td>". htmlentities($row['due_date']?? '') ."</td>
                       <td>". htmlentities($row['fine']?? '') ."</td>
                       <td>{$status}</td>
+                      <td>". htmlentities($row['actual_return']?? '') ."</td>
                     </tr>";
 
                     $cnt++;
             }
           } else{
-            echo '<tr><td colspan="6" style="text-align:center;">No issued books found.</td></tr>';
+            echo '<tr><td colspan="7" style="text-align:center;">No issued books found.</td></tr>';
           }
 
         ?>

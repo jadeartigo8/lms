@@ -15,7 +15,7 @@ if (strlen($_SESSION['alogin']) == 0) {
 }
 
 $issuedBook = null;
-$fine = 0;
+
 date_default_timezone_set('Asia/Manila');
 
 if (isset($_GET['id'])) {
@@ -26,7 +26,7 @@ if (isset($_GET['id'])) {
     exit;
   }
 
-  // Fetch the issued book record
+  // get issued-book record
   $stmt = $conn->prepare("SELECT ib.*, b.title, b.image, b.isbn, s.first_name, s.middle_name, s.last_name 
                             FROM issued_books ib
                             JOIN books b ON ib.book_id = b.book_id
@@ -38,12 +38,22 @@ if (isset($_GET['id'])) {
 
   if ($result && $result->num_rows > 0) {
     $issuedBook = $result->fetch_assoc();
-    $returnDate = strtotime($issuedBook['return_date']);
+    $fine = $issuedBook['fine'];
+    $remarks = $issuedBook['remarks']?? 'On time';
+    $daysLateText = "";
+    $isOverdue = false;
+
+
+    $dueDate = strtotime($issuedBook['due_date']);
     $now = time();
 
-    if ($issuedBook['return_status'] == 0 && $now > $returnDate) {
-      $daysLate = floor(($now - $returnDate) / (60 * 60 * 24));
+    if ($issuedBook['return_status'] == 0 && $now > $dueDate) {
+      $daysLate = floor(($now - $dueDate) / (60 * 60 * 24));
       $fine = $daysLate * 10;
+
+      $remarks = "Overdue - should have been returned on " . date("F j, Y", $dueDate);
+      $daysLateText = "$daysLate day (s) overdue";
+      $isOverdue = true;
     }
 
   } else {
@@ -57,12 +67,18 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
   $decryptedID = decrypt($_POST['issued_books_id']);
   $fine = $_POST['fine'] ?? 0;
 
+  $remarksText = $_POST['remarks'] ?? 'On time';
   $stmt = $conn->prepare("UPDATE issued_books 
-                            SET return_status = 1, return_date = NOW(), fine = ? 
+                            SET return_status = 1, actual_return = NOW(), fine = ?, remarks = ?
                             WHERE issued_books_id = ?");
-  $stmt->bind_param("di", $fine, $decryptedID);
+  $stmt->bind_param("dsi", $fine, $remarksText,  $decryptedID);
 
   if ($stmt->execute()) {
+    $book_id = $issuedBook['book_id'];
+    $bookStmt = $conn->prepare("UPDATE books SET quantity = quantity + 1 WHERE book_id = ?");
+    $bookStmt->bind_param("i", $book_id);
+    $bookStmt->execute();
+
     $_SESSION['msg'] = "Book marked as returned successfully.";
     $logger->write("Book returned. ID: $decryptedID");
   } else {
@@ -127,8 +143,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         </div>
 
         <div class="form-group">
-          <label>Return Date</label>
-          <input type="text" value="<?php echo htmlentities($issuedBook['return_date']); ?>" readonly>
+          <label>Due Date</label>
+          <input type="text" value="<?php echo htmlentities($issuedBook['due_date']); ?>" readonly>
         </div>
 
 
@@ -136,6 +152,20 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
           <label>Fine (₱)</label>
           <input type="number" name="fine" value="<?php echo htmlentities($fine); ?>" min="0" step="1" required>
         </div>
+
+        <div class="form-group">
+          <label for="remarks">Remarks</label>
+          <input type="text" value="<?php echo htmlentities($remarks); ?>" readonly
+                style="<?php echo $isOverdue ? 'color:red; font-weight; bold' : ''; ?>">
+          <input type="hidden" name="remarks" value="<?php echo htmlentities($remarks); ?>">
+
+        </div>
+
+        <?php if($isOverdue): ?>
+          <div class="form-group" style="color: red; font-weight: bold;">
+          <?php echo htmlentities($daysLateText); ?>
+        </div>
+        <?php endif; ?>
 
 
         <div class="form-actions">
@@ -146,7 +176,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
           <?php else: ?>
             <div style="padding: 10px; background-color: #d4edda; color: #155724; border-radius: 5px; font-weight: bold;">
               <i class="fas fa-check-circle"></i> Returned on
-              <?php echo date('F j, Y \a\t g:i A', strtotime($issuedBook['return_date'])); ?>
+              <?php echo date('F j, Y \a\t g:i A', strtotime($issuedBook['actual_return'])); ?>
             </div>
           <?php endif; ?>
       </form>
