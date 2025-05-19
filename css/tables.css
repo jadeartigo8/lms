@@ -1,4 +1,6 @@
-
+a{
+  text-decoration: none;
+}
 .container {
   max-width: 1200px;
   margin: 40px auto;
@@ -104,10 +106,73 @@ tr:hover {
   font-weight: bold;
   border-radius: 5px;
   cursor: pointer;
+  margin: 4px;
 }
 
 .btn-apply:hover {
   background-color: #0056b3;
+}
+
+.btn-danger {
+  padding: 8px 12px;
+  background-color: #ff0000;
+  color: #fff;
+  border: none;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 4px;
+}
+
+.btn-danger:hover {
+  background-color: #9a0707;
+}
+
+.btn-block {
+  padding: 8px 12px;
+  background-color: #de9d1b;
+  color: #fff;
+  border: none;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 4px;
+}
+
+.btn-block:hover {
+  background-color: #000000;
+}
+
+
+.btn-return {
+  padding: 8px 12px;
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 4px;
+}
+
+.btn-return:hover {
+  background-color: #205e2e;
+}
+
+
+.btn-view {
+  padding: 8px 12px;
+  background-color: #28a796;
+  color: #fff;
+  border: none;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 4px;
+}
+
+.btn-view:hover {
+  background-color: #205c5e;
 }
 
 .download-btn {

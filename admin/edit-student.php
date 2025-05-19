@@ -5,6 +5,11 @@ include '../security/crypt.php';
 include 'includes/logger.php';
 date_default_timezone_set('Asia/Manila');
 
+if (strlen($_SESSION['alogin']) == 0) {
+    header('location:../index.php');
+    exit;
+}
+
 $logger = new Logger();
 
 

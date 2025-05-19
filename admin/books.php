@@ -209,11 +209,11 @@ if (isset($_GET['download']) && $_GET['download'] == 1) {
                             <td>" . htmlentities($row['author']) . "</td>
                             <td>" . htmlentities($row['isbn']) . "</td>
                             <td>" . htmlentities($row['quantity']) . "</td>
-                            <td style='text-align: center; width: 180px;'>
-                                <a href=\"edit-book.php?id=" . urlencode($encryptedID) . "\" class=\"btn btn-sm btn-primary\" style=\"margin-bottom:5px; display:inline-block;\">
+                            <td style='text-align: left; width: 200px;'>
+                                <a href=\"edit-book.php?id=" . urlencode($encryptedID) . "\" class=\"btn-apply\" style=\"margin-bottom:5px; display:inline-block;\">
                                     <i class=\"fas fa-edit\"></i> Edit
-                                </a><br>
-                                <a href=\"books.php?del=" . urlencode($encryptedID) . "\" class=\"btn btn-sm btn-danger\" style=\"margin-top:5px; display:inline-block;\" onclick=\"return confirm('Are you sure you want to delete this book?')\">
+                                </a>
+                                <a href=\"books.php?del=" . urlencode($encryptedID) . "\" class=\"btn-danger\" style=\"margin-top:5px; display:inline-block;\" onclick=\"return confirm('Are you sure you want to delete this book?')\">
                                     <i class=\"fas fa-trash-alt\"></i> Delete
                                 </a>
                             </td>

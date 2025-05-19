@@ -18,7 +18,6 @@
           <li><a class="logout-btn" href="index.php">Log Out</a></li>
         <?php } else { ?>
           <li><a href="index.php#ulogin">User Login</a></li>
-          <li><a href="signup.php">User Signup</a></li>
           <li><a href="adminlogin.php">Admin Login</a></li>
         <?php } ?>
       </ul>

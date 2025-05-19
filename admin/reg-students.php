@@ -7,6 +7,12 @@ include '../security/crypt.php';
 include 'includes/logger.php';
 date_default_timezone_set('Asia/Manila');
 
+
+if (strlen($_SESSION['alogin']) == 0) {
+    header('location:../index.php');
+    exit;
+}
+
 $logger = new Logger();
 
 
@@ -138,6 +144,12 @@ if (isset($_GET['del'])) {
 
         <div class="header-container">
             <h2>Registered Students</h2>
+            <div style="text-align: right; margin-bottom: 10px;">
+                <a href="signup.php" class="btn btn-primary"
+                    style="padding: 8px 14px; background-color:rgb(32, 142, 58); border: none; border-radius: 5px; color: #fff; text-decoration: none; font-weight: bold;">
+                    <i class="fas fa-plus"></i> Register Student
+                </a>
+            </div>
 
             <?php
             $alerts = ['error', 'msg', 'updatemsg', 'delmsg'];
@@ -185,17 +197,17 @@ if (isset($_GET['del'])) {
                             <td>" . htmlentities($row['registration_date']) . "</td>
                             <td style='color: {$statusColor}; font-weight: bold;'>{$statusLabel}</td>
                             <td>
-                                <a href=\"reg-students.php?toggle=" . urlencode($encryptedID) . "\" 
+                                <a class=\"btn-block\" href=\"reg-students.php?toggle=" . urlencode($encryptedID) . "\" 
                                 onclick=\"return confirm('Are you sure you want to " . ($row['status'] == 1 ? 'block' : 'unblock') . " this student?')\">
                                 " . ($row['status'] == 1 ? 'Block' : 'Unblock') . "
                                 </a>
 
-                                <a href=\"edit-student.php?id=" . urlencode($encryptedID) . "\" class=\"btn btn-sm btn-primary me-1\">
-                                    <i class=\"fas fa-edit\"></i> Edit
+                                <a href=\"edit-student.php?id=" . urlencode($encryptedID) . "\" class=\"btn btn-sm btn-apply me-2\">
+                                     Edit
                                 </a>
 
                                 <a href=\"reg-students.php?del=" . urlencode($encryptedID) . "\" class=\"btn btn-sm btn-danger\" onclick=\"return confirm('Are you sure you want to delete this student?')\">
-                                    <i class=\"fas fa-trash-alt\"></i> Delete
+                                     Delete
                                 </a>
                             </td>
 

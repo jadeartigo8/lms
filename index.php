@@ -117,6 +117,10 @@ if (isset($_POST['login'])) {
         </form>
       </div>
     </div>
+
+    <div class="login-image">
+      
+    </div>
   </div>
 
 

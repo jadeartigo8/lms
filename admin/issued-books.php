@@ -78,6 +78,7 @@ function getIssuedBooks($conn)
           <th>ISBN</th>
           <th>Issued Date</th>
           <th>Due Date</th>
+          <th>Returned Date</th>
           <th>Status</th>
           <th>Actions</th>
         </tr>
@@ -100,18 +101,27 @@ function getIssuedBooks($conn)
               <td>" . htmlentities($row['isbn'] ?? '') . "</td>
               <td>" . htmlentities($row['issued_date'] ?? '') . "</td>
               <td>" . htmlentities($row['due_date'] ?? '') . "</td>
-              <td>{$status}</td>
-              <td style='text-align:center;'>
-                  <a href=\"return-book.php?id=" . urlencode($encryptedID) . "\" class=\"btn btn-sm btn-success\" >
+              <td>" . htmlentities($row['actual_return'] ?? '') . "</td>
+              <td style=\"color: " . ($status === 'Returned'?'green':'red') . ";\">" . htmlentities($status)."</td>
+              <td style='text-align:left;'>";
+
+              if($row['return_status']!=1){
+                echo "<a href=\"return-book.php?id=" . urlencode($encryptedID) . "\" class=\"btn btn-sm btn-return\" >
                       <i class=\"fas fa-undo\"></i> Return
-                  </a>
-              </td>
+                  </a>";
+              } else{
+                echo "<a href=\"return-book.php?id=" . urlencode($encryptedID) . "\" class=\"btn btn-sm btn-view\" >
+                      <i class=\"fas fa-undo\"></i> View
+                  </a>";
+              }
+                  
+              echo "</td>
           </tr>";
 
             $cnt++;
           }
         } else {
-          echo '<tr><td colspan="8" style="text-align:center;">No issued books found.</td></tr>';
+          echo '<tr><td colspan="9" style="text-align:center;">No issued books found.</td></tr>';
         }
         ?>
       </tbody>

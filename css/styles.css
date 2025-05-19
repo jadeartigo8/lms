@@ -3,6 +3,8 @@
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
+
+
 body .container{
   max-width: 1200px;
   margin: 40px auto;
@@ -11,6 +13,8 @@ body .container{
   border-radius: 8px;
   padding: 50px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+ 
+
 }
 
 
@@ -136,7 +140,7 @@ body .container{
   justify-content: center;
   align-items: center;
   margin-top: 80px;
-  padding: 20px;
+  padding-left: 40px;
 }
 
 /* Card styles */
@@ -146,7 +150,24 @@ body .container{
   border-radius: 10px;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
   overflow: hidden;
+  
 }
+
+.login-image {
+  width: 400px;
+  height: 400px;   
+  margin: 40px;           
+  background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Southern_Leyte_State_University.png/1198px-Southern_Leyte_State_University.png');
+  background-size: cover;     
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: #fff;
+  overflow: hidden;
+  display: flex;             
+  align-items: center;
+  justify-content: center;
+}
+
 
 /* Header styles */
 .card-header {

@@ -10,7 +10,7 @@ date_default_timezone_set('Asia/Manila');
 $logger = new Logger();
 
 if (strlen($_SESSION['alogin']) == 0) {
-  header('location:index.php');
+  header('location:../index.php');
   exit;
 }
 

@@ -33,8 +33,8 @@ while ($row = $studentQuery->fetch_assoc()) {
 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $book_title = $_POST['book_title'] ?? '';
-    $student_name = $_POST['student_name'] ?? '';
+    $book_title = trim($_POST['book_title'] ?? '');
+    $student_name = trim($_POST['student_name'] ?? '');
     $issued_date_raw = $_POST['issued_date'] ?? date('Y-m-d H:i:s');
     $return_date_raw = $_POST['return_date'] ?? date('Y-m-d H:i:s', strtotime('+7 days'));
     $remarks = $_POST['remarks'] ?? '';

@@ -1,7 +1,16 @@
 <?php
 session_start();
-include('connection/db.php');
+include('../connection/db.php');
+include('includes/logger.php');
 error_reporting(E_ALL);
+$logger = new Logger();
+
+if (strlen($_SESSION['alogin']) == 0) {
+    header('location:../index.php');
+    exit;
+}
+
+
 
 $emailError = "";
 $passwordError = "";
@@ -97,6 +106,7 @@ if (isset($_POST['signup'])) {
                 $success = registerStudent($conn, $studentid, $first_name, $middle_name, $last_name, $email, $mobileno, $hashed_password, $status, $registration_date);
                 if ($success) {
                     echo "<script>alert('Your registration was successful!');</script>";
+                    $logger->write("Student added: {$first_name}, {$last_name}");
                     $_POST = array(); 
                 } else {
                     echo "<script>alert('Something went wrong. Please try again later.');</script>";
@@ -124,7 +134,7 @@ if (isset($_POST['signup'])) {
   <title>User Signup</title>
   
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="../css/styles.css">
 </head>
 
 <body style="font-family: 'Verdana', sans-serif;">
