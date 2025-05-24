@@ -35,7 +35,7 @@ $totalStudents = $conn->query("SELECT COUNT(*) AS students FROM students")->fetc
 
   <div class="dashboard-container">
     <div class="dashboard-header">
-      <h2><strong>Admin Dashboard</strong></h2>
+      <h1><strong>Admin Dashboard</strong></h1>
       <p>Welcome, <?php echo htmlentities($_SESSION['alogin']); ?>!</p>
     </div>
 

@@ -37,7 +37,7 @@ if (isset($_POST['login'])) {
                     header('location: dashboard.php');
                     exit;
                 } else {
-                  $_SESSION['error'] = 'Invalid credentials';
+                  $_SESSION['error'] = 'You are blocked. Contact the admin.';
                 }
             } else {
               $_SESSION['error'] = 'Invalid credentials';
@@ -79,7 +79,7 @@ if (isset($_POST['login'])) {
   <div class="form-container">
     <div class="login-card">
       <div class="card-header">
-        <h4><i class="fas fa-user-circle"></i>&nbsp; User Login Form</h4>
+        <h4><i class="fas fa-user"></i>&nbsp; User Login Form</h4>
       </div>
       <div class="card-body">
 
@@ -110,7 +110,11 @@ if (isset($_POST['login'])) {
           <div class="form-actions">
             <button type="submit" name="login">Login</button>
             <div class="signup-link">
-              <a href="signup.php"><small>Not registered yet?</small></a>
+              <a href=""><small>Not registered yet? Create your account at the library reception.</small></a>
+            </div>
+
+            <div class="signup-link">
+              <a href="adminlogin.php"><small><i class="fas fa-user-shield"></i> Admin?</small></a>
             </div>
           </div>
 

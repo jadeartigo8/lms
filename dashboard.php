@@ -33,7 +33,7 @@ $issuedBooks = count(getIssuedBooksByID($_SESSION['stdid'], $conn));
 
   <div class="dashboard-container">
     <div class="dashboard-header">
-      <h2><strong>User Dashboard</strong></h2>
+      <h1><strong>User Dashboard</strong></h1>
       <p>Welcome, <?php echo htmlentities($_SESSION['login']); ?>!</p>
     </div>
 

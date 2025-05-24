@@ -9,12 +9,18 @@ body .container{
   max-width: 1200px;
   margin: 40px auto;
   padding: 0 20px;
-  background-color: #fff;
+  background-color: #132649;
   border-radius: 8px;
   padding: 50px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
  
 
+}
+
+h1{
+  font-size: 30px;
+  color: #0056b3;
+  font-weight: 900;
 }
 
 
@@ -50,8 +56,8 @@ body .container{
 .navbar-brand {
   font-weight: 600;
   text-decoration: none;
-  color: #333;
-  font-size: 20px;
+  color: #0d40a6;
+  font-size: 24px;
   display: flex;
   align-items: center;
 }
@@ -84,7 +90,8 @@ body .container{
 
 .nav-list li a {
   text-decoration: none;
-  color: #333;
+  color: #1066c2;
+  font-size: 30px;
   padding: 6px 12px;
   transition: background 0.3s, color 0.3s;
 }
@@ -99,6 +106,11 @@ body .container{
   background-color: #dc3545;
   color: white !important;
   border-radius: 4px;
+  font-size: 16px;
+  padding: 10px 10px;
+  text-decoration: none;
+  border-width: 0cap;
+  margin-left: 100px;
 }
 
 .logout-btn:hover {
@@ -157,7 +169,7 @@ body .container{
   width: 400px;
   height: 400px;   
   margin: 40px;           
-  background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Southern_Leyte_State_University.png/1198px-Southern_Leyte_State_University.png');
+  background-image: url('https://scontent.fceb1-3.fna.fbcdn.net/v/t39.30808-6/362274040_257123297109556_5832240789927383297_n.png?_nc_cat=103&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeFfY5S71alXDSYMgwnypvHFpu5cnQiCDEWm7lydCIIMRaMl7zIU6GTHs_qX3MjD0h7rFg2QDLH5-zv45v6W7tIz&_nc_ohc=jNn2uwJDrCoQ7kNvwE_Iiy9&_nc_oc=AdkxTmjeDtmHVsI7MDSjSP6GCPczrvvpzAhQZtmfrOR6472A0__Ratx_XQrrUY1Wxp4&_nc_zt=23&_nc_ht=scontent.fceb1-3.fna&_nc_gid=0GItVU5BHLQlPhGxQefiQQ&oh=00_AfLml-GNuaW3C2cx_DXhJnt1xgpj10wWrz_D81Ydyc1_DQ&oe=68313A6A');
   background-size: cover;     
   background-position: center;
   background-repeat: no-repeat;

@@ -74,7 +74,7 @@ if (isset($_POST['login'])) {
   <link rel="stylesheet" href="css/styles.css">
 </head>
 
-<body>
+<body >
 
   <!-- Header Section -->
   <?php include('includes/header.php'); ?>
@@ -83,8 +83,9 @@ if (isset($_POST['login'])) {
 
   <div class="form-container">
     <div class="login-card">
+      
       <div class="card-header">
-        <h4><i class="fas fa-user-circle"></i>&nbsp; Admin Login Form</h4>
+        <h4><i class="fas fa-user-shield"></i>&nbsp; Admin Login Form</h4>
       </div>
       <div class="card-body">
         <form method="post">
@@ -97,6 +98,8 @@ if (isset($_POST['login'])) {
           ?>
         </div>
         <?php endif; ?>
+
+        
 
           <!-- Email Field -->
           <div class="form-group">
@@ -113,11 +116,20 @@ if (isset($_POST['login'])) {
           <!-- Buttons -->
           <div class="form-actions">
             <button type="submit" name="login">Login</button>
+
+            <div class="signup-link">
+              <a href="index.php"><small><i class="fas fa-user"></i> User?</small></a>
+            </div>
           </div>
 
+          
+
+          
         </form>
       </div>
     </div>
+
+
 
     <div class="login-image"></div>
   </div>

@@ -30,7 +30,7 @@ if (strlen($_SESSION['login']) == 0) {
 
 
   <div class="container">
-    <h2>Issued Books</h2>
+    <h1>Issued Books</h1>
 
   
     <table>
