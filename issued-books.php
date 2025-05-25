@@ -3,13 +3,34 @@
 session_start();
 error_reporting(E_ALL);
 include('connection/db.php');
-include 'includes/functions.php';
+
 
 if (strlen($_SESSION['login']) == 0) {
   header('location:index.php');
   exit();
 }
 
+function getIssuedBooksByID($studentID, $conn){
+  $issuedBooks = [];
+  $sql = "SELECT * FROM issued_books ib 
+          JOIN books b on ib.book_id = b.book_id
+          WHERE student_id = ?";
+
+  $stmt = $conn->prepare($sql);
+  $stmt->bind_param('s',$studentID);
+  $stmt-> execute();
+
+  $result = $stmt->get_result();
+
+  if($result){
+    while($row = $result->fetch_assoc()){
+      $issuedBooks[]= $row;
+    }
+  }
+
+  return $issuedBooks;
+
+}
 
 
 ?>
@@ -24,6 +45,7 @@ if (strlen($_SESSION['login']) == 0) {
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="css/styles.css">
   <link rel="stylesheet" href="css/tables.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
   <?php include('includes/header.php'); ?>
@@ -49,9 +71,9 @@ if (strlen($_SESSION['login']) == 0) {
       <tbody>
         <?php
           $id = $_SESSION['stdid'];
-          var_dump($id);
+          
           $issuedBooks = getIssuedBooksByID($id,$conn);
-          var_dump($issuedBooks);
+          
           $cnt = 1;
 
           if(count($issuedBooks)>0){

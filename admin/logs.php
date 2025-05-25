@@ -16,24 +16,31 @@ $logs = $logger->getLogs();
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>System Logs</title>
 
-    <link rel="stylesheet" href="../css/styles.css">
-    <link rel="stylesheet" href="../css/tables.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+<head>
+  <meta charset="UTF-8">
+  <title>System Logs</title>
+
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/tables.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+
 </head>
+
 <body>
-  <div class="container">
-  <h2>System Logs</h2>
+  <div class="container-log">
     <div>
+      <h2>System Logs</h2>
+      <div>
         <?php foreach ($logs as $line): ?>
-            <div class="log-entry"><?php echo htmlspecialchars($line); ?></div>
+          <div class="log-entry"><?php echo htmlspecialchars($line); ?></div>
         <?php endforeach; ?>
+      </div>
     </div>
   </div>
-    
+
+
 </body>
+
 </html>

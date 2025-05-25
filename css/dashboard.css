@@ -16,7 +16,7 @@
 }
 
 .dashboard-card {
-  background-color: #fff;
+  background-color: #ffde59; /* Updated to yellow */
   border-radius: 8px;
   padding: 50px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
@@ -26,7 +26,7 @@
   margin: 0;
   font-size: 40px;
   text-align: left;
-  color: #007bff;
+  color: #000435; /* Updated to dark blue */
 }
 
 .dashboard-card p {
@@ -38,5 +38,5 @@
 .dashboard-icon {
   font-size: 30px;
   float: right;
-  color: #007bff;
+  color: #000435; /* Updated to dark blue */
 }

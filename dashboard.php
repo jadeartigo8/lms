@@ -6,14 +6,32 @@ include('connection/db.php');
 include 'includes/functions.php';
 
 
+//checking if user ba ang login if dili, redirects sa index
 if (strlen($_SESSION['login']) == 0) {
   header('location:index.php');
   exit();
 }
 
+
+// student id from session after login. used for querrying that needs student id as parameter
+$studentID= $_SESSION['stdid'];
+
+
+// ---- GET COUNTS -----
+
+// 1. get total books
 $totalBooks = $conn->query("SELECT SUM(quantity) AS total FROM books")->fetch_assoc()['total'];
+// 2. get available books
 $availableBooks = $conn->query("SELECT COUNT(*) AS available FROM books WHERE quantity !=0")->fetch_assoc()['available'];
-$issuedBooks = count(getIssuedBooksByID($_SESSION['stdid'], $conn));
+
+// 3. count all issued books for student id
+$issuedBooksQuerry = "select count(*) as issued_count from issued_books where student_id = ?";
+$stmt = $conn->prepare($issuedBooksQuerry);
+$stmt->bind_param('s',$studentID);
+$stmt->execute();
+$issuedBooksResult = $stmt->get_result();
+$issuedBooks= $issuedBooksResult->fetch_assoc()['issued_count'];
+
 
 ?>
 
@@ -27,6 +45,7 @@ $issuedBooks = count(getIssuedBooksByID($_SESSION['stdid'], $conn));
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="css/styles.css">
   <link rel="stylesheet" href="css/dashboard.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
 <?php include('includes/header.php'); ?>

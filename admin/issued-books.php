@@ -39,8 +39,29 @@ function getIssuedBooks($conn)
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="../css/styles.css">
   <link rel="stylesheet" href="../css/tables.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
   <style>
-   
+@media print {
+  @page { size: landscape; margin: 20mm; }
+  header, .print-btn, h2, .btn, .alert { display: none !important; }
+  table, .container {
+    width: 100vw !important;
+    max-width: 100vw !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  table {
+    table-layout: auto !important;
+    font-size: 13px !important;
+    overflow-x: visible !important;
+    display: table !important;
+  }
+  table th:last-child, table td:last-child { display: none !important; }
+  body { background: #fff !important; color: #000 !important; box-shadow: none !important; margin: 0; padding: 0; text-align: center; }
+  .table-responsive, [style*="overflow-x: auto"] { overflow-x: visible !important; }
+}
+
+
   </style>
 </head>
 
@@ -50,10 +71,16 @@ function getIssuedBooks($conn)
   <div class="container">
     <h2>Issued Books</h2>
 
-    <div style="text-align: right; margin-bottom: 10px;">
+
+
+    <div style="text-align: right; margin-bottom: 10px; ">
+      <a onclick="window.print()" class="btn btn-secondary" style="padding: 8px 14px; background-color:rgb(11, 24, 44); border: none; border-radius: 5px; color: #fff; text-decoration: none; font-weight: bold;">
+            <i class="fas fa-print"></i> Print as PDF
+          </a> 
           <a href="issue-book.php" class="btn btn-primary" style="padding: 8px 14px; background-color: #28a745; border: none; border-radius: 5px; color: #fff; text-decoration: none; font-weight: bold;">
               <i class="fas fa-plus"></i> Issue Book
           </a>
+         
       </div>
 
     <?php
@@ -69,6 +96,9 @@ function getIssuedBooks($conn)
     }
     ?>
 
+
+
+
     <table>
       <thead>
         <tr>
@@ -80,7 +110,7 @@ function getIssuedBooks($conn)
           <th>Due Date</th>
           <th>Returned Date</th>
           <th>Status</th>
-          <th>Actions</th>
+          <th style="min-width:110px;">Actions</th>
         </tr>
       </thead>
       <tbody>
@@ -103,14 +133,14 @@ function getIssuedBooks($conn)
               <td>" . htmlentities($row['due_date'] ?? '') . "</td>
               <td>" . htmlentities($row['actual_return'] ?? '') . "</td>
               <td style=\"color: " . ($status === 'Returned'?'green':'red') . ";\">" . htmlentities($status)."</td>
-              <td style='text-align:left;'>";
+              <td style='text-align:left; min-width:110px;'>";
 
               if($row['return_status']!=1){
-                echo "<a href=\"return-book.php?id=" . urlencode($encryptedID) . "\" class=\"btn btn-sm btn-return\" >
+                echo "<a href=\"return-book.php?id=" . urlencode($encryptedID) . "\" class=\"btn btn-sm btn-return\" style=\"white-space: nowrap;\">
                       <i class=\"fas fa-undo\"></i> Return
                   </a>";
               } else{
-                echo "<a href=\"return-book.php?id=" . urlencode($encryptedID) . "\" class=\"btn btn-sm btn-view\" >
+                echo "<a href=\"return-book.php?id=" . urlencode($encryptedID) . "\" class=\"btn btn-sm btn-view\" style=\"white-space: nowrap;\">
                       <i class=\"fas fa-undo\"></i> View
                   </a>";
               }

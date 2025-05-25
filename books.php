@@ -8,7 +8,7 @@ date_default_timezone_set('Asia/Manila');
 
 
 
-if (strlen($_SESSION['alogin']) == 0) {
+if (strlen($_SESSION['login']) == 0) {
     header('location:index.php');
     exit;
 }
@@ -18,12 +18,12 @@ if (strlen($_SESSION['alogin']) == 0) {
 
 function getBookDetails($conn)
 {
-    $books = [];
-    $search = $_GET['search'] ?? '';
-    $sort = $_GET['sort'] ?? '';
+    $books = []; // preparing array para mag-store sa result unja
+    $search = $_GET['search'] ?? '';  // kuhaon nija ang search from the form if wala then default '' string , then i-store sa search variable 
+    $sort = $_GET['sort'] ?? '';  // same lang with search
 
-    $sql = "SELECT * FROM books WHERE title LIKE ?";
-    $order = "";
+    $sql = "SELECT * FROM books WHERE title LIKE ?"; // base sql statement
+    $order = ""; 
 
     switch ($sort) {
         case 'title_asc':  $order = " ORDER BY title ASC"; break;
@@ -63,6 +63,7 @@ function getBookDetails($conn)
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/tables.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
 
     <style>
         

@@ -135,9 +135,10 @@ if (isset($_POST['signup'])) {
   
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="../css/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
 </head>
 
-<body style="font-family: 'Verdana', sans-serif;">
+<body>
   <?php include('includes/header.php'); ?>
 
   <div class="signup-container">

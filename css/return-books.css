@@ -1,8 +1,7 @@
- /* RETURN BOOKS  */
+/* RETURN BOOKS */
 .return-form-container {
   max-width: 600px;
   margin: 40px auto;
-  background: #fff;
   padding: 25px 30px;
   border-radius: 10px;
   box-shadow: 0 0 10px #ccc;
@@ -45,8 +44,8 @@
 
 .btn-submit {
   padding: 10px 20px;
-  background-color: #28a745;
-  color: #fff;
+  background-color: #000435; /* Updated to dark blue */
+  color: #ffde59; /* Updated to yellow for contrast */
   font-weight: bold;
   border: none;
   border-radius: 5px;
@@ -54,5 +53,6 @@
 }
 
 .btn-submit:hover {
-  background-color: #218838;
+  background-color: #ffde59; /* Hover effect with yellow */
+  color: #000435; /* Updated to dark blue for contrast */
 }

@@ -55,10 +55,18 @@ function getBookDetails($conn)
     $order = "";
 
     switch ($sort) {
-        case 'title_asc':  $order = " ORDER BY title ASC"; break;
-        case 'title_desc': $order = " ORDER BY title DESC"; break;
-        case 'qty_asc':    $order = " ORDER BY quantity ASC"; break;
-        case 'qty_desc':   $order = " ORDER BY quantity DESC"; break;
+        case 'title_asc':
+            $order = " ORDER BY title ASC";
+            break;
+        case 'title_desc':
+            $order = " ORDER BY title DESC";
+            break;
+        case 'qty_asc':
+            $order = " ORDER BY quantity ASC";
+            break;
+        case 'qty_desc':
+            $order = " ORDER BY quantity DESC";
+            break;
     }
 
     $stmt = $conn->prepare($sql . $order);
@@ -73,7 +81,7 @@ function getBookDetails($conn)
 
     return $books;
 
-    
+
 }
 
 
@@ -81,7 +89,7 @@ function getBookDetails($conn)
 if (isset($_GET['download']) && $_GET['download'] == 1) {
     header('Content-Type: text/csv');
     header('Content-Disposition: attachment; filename="books.csv"');
-    
+
     $output = fopen("php://output", "w");
     fputcsv($output, ['#', 'Title', 'Category', 'Author', 'ISBN', 'Quantity']);
 
@@ -105,19 +113,74 @@ if (isset($_GET['download']) && $_GET['download'] == 1) {
     <meta charset="UTF-8">
     <title>Manage Books</title>
 
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="../css/styles.css">
     <link rel="stylesheet" href="../css/tables.css">
 
     <style>
         
+
+       @media print {
+
+    body,
+    .container,
+    table {
+        background: #fff !important;
+        color: #000435 !important;   
+        box-shadow: none !important;
+    }
+
+    .download-btn,
+    .filter-toolbar,
+    .btn,
+    .btn-danger,
+    .btn-apply,
+    .alert,
+    .container-header,
+    header,
+    footer,
+    .menu-toggle,
+    .nav-list {
+        display: none !important;
+    }
+
+    .print-header {
+        display: flex !important;
+    }
+
+    table {
+        width: 80% !important;           /* Optional: Not 100% so it isn't edge-to-edge */
+        font-size: 13px !important;
+        overflow-x: visible !important;
+        display: table !important;
+        margin: 0 auto !important;       /* <-- This centers the table horizontally */
+        margin-left: -20px;
+    }
+
+    th:last-child,
+    td:last-child {
+        display: none !important;
+        /* Hide Actions column in print */
+    }
+}
+
+/* Remove horizontal scrollbar for table (screen) */
+table {
+    width: 100%;
+    table-layout: auto;
+    overflow-x: visible !important;
+    display: table;
+    margin: 0 auto; /* Center on screen too */
+}
+
     </style>
 </head>
 
 <body>
     <?php include('includes/header.php'); ?>
 
-   
+
 
     <div class="container">
 
@@ -133,24 +196,33 @@ if (isset($_GET['download']) && $_GET['download'] == 1) {
         </div>
 
         <div class="filter-toolbar">
-    <form method="get" class="form-inline">
-        <div class="form-left">
-            <select name="sort" class="form-control">
-                <option value="">Sort by</option>
-                <option value="title_asc" <?= ($_GET['sort'] ?? '') == 'title_asc' ? 'selected' : '' ?>>Title A-Z</option>
-                <option value="title_desc" <?= ($_GET['sort'] ?? '') == 'title_desc' ? 'selected' : '' ?>>Title Z-A</option>
-                <option value="qty_asc" <?= ($_GET['sort'] ?? '') == 'qty_asc' ? 'selected' : '' ?>>Quantity Low-High</option>
-                <option value="qty_desc" <?= ($_GET['sort'] ?? '') == 'qty_desc' ? 'selected' : '' ?>>Quantity High-Low</option>
-            </select>
-            <button type="submit" class="btn-apply">Apply</button>
-        </div>
+            <form method="get" class="form-inline">
+                <div class="form-left">
+                    <select name="sort" class="form-control">
+                        <option value="">Sort by</option>
+                        <option value="title_asc" <?= ($_GET['sort'] ?? '') == 'title_asc' ? 'selected' : '' ?>>Title A-Z
+                        </option>
+                        <option value="title_desc" <?= ($_GET['sort'] ?? '') == 'title_desc' ? 'selected' : '' ?>>Title Z-A
+                        </option>
+                        <option value="qty_asc" <?= ($_GET['sort'] ?? '') == 'qty_asc' ? 'selected' : '' ?>>Quantity
+                            Low-High</option>
+                        <option value="qty_desc" <?= ($_GET['sort'] ?? '') == 'qty_desc' ? 'selected' : '' ?>>Quantity
+                            High-Low</option>
+                    </select>
+                    <button type="submit" class="btn-apply">Apply</button>
+                </div>
 
-        <div class="form-right">
-            <input type="text" name="search" placeholder="Search by title..." value="<?= htmlspecialchars($_GET['search'] ?? '') ?>" class="form-control" />
-            <a href="books.php?download=1" class="download-btn"><i class="fas fa-file-csv"></i> Download CSV</a>
+                <div class="form-right">
+                    <input type="text" name="search" placeholder="Search by title..."
+                        value="<?= htmlspecialchars($_GET['search'] ?? '') ?>" class="form-control" />
+                    <a href="books.php?download=1" class="download-btn"><i class="fas fa-file-csv"></i> Download CSV</a>
+                    <button type="button" onclick="window.print()" class="download-btn" style="margin-left:10px;">
+                        <i class="fas fa-print"></i> Print / Save as PDF
+                    </button>
+
+                </div>
+            </form>
         </div>
-    </form>
-</div>
 
 
 
@@ -169,6 +241,7 @@ if (isset($_GET['download']) && $_GET['download'] == 1) {
             }
         }
         ?>
+
 
         <table>
             <thead>

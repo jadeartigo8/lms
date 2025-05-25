@@ -1,37 +1,49 @@
 /* General styles */
-:root{
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
+:root {
+  font-family: "Montserrat", sans-serif;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 
-
-body .container{
+body .container {
   max-width: 1200px;
   margin: 40px auto;
-  padding: 0 20px;
-  background-color: #132649;
-  border-radius: 8px;
   padding: 50px;
+  border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
- 
-
+  background-color: #ffde59; 
 }
 
-h1{
+.container-log{
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 100px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  background-color: #ffffff; 
+}
+
+h1 {
   font-size: 30px;
-  color: #0056b3;
+  color: #000435; 
   font-weight: 900;
 }
 
-
-
 /* Header styles */
 .custom-navbar {
-  background-color: #f8f9fa;
+  background-color: #000435; 
   border-bottom: 1px solid #ddd;
-  padding: 10px 0;
+  padding: 12px 0;
+   margin: 0;
+  width: 100vw;         /* Force the bar full width */
+  box-sizing: border-box;
 }
-
 
 .custom-error {
   background-color: #f8d7da;
@@ -50,13 +62,13 @@ h1{
   display: flex;
   justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap;
+  
 }
 
 .navbar-brand {
   font-weight: 600;
   text-decoration: none;
-  color: #0d40a6;
+  color: #ffde59; /* Updated to yellow for contrast */
   font-size: 24px;
   display: flex;
   align-items: center;
@@ -64,7 +76,7 @@ h1{
 
 .navbar-brand i {
   font-size: 22px;
-  color: #007bff;
+  color: #ffde59; /* Updated to yellow for contrast */
   margin-right: 8px;
 }
 
@@ -90,15 +102,15 @@ h1{
 
 .nav-list li a {
   text-decoration: none;
-  color: #1066c2;
+  color: #ffde59; /* Updated to yellow for contrast */
   font-size: 30px;
   padding: 6px 12px;
   transition: background 0.3s, color 0.3s;
 }
 
 .nav-list li a:hover {
-  background-color: #007bff;
-  color: white;
+  background-color: #ffde59; /* Hover effect with yellow */
+  color: #000435; /* Updated to dark blue for contrast */
   border-radius: 4px;
 }
 
@@ -140,12 +152,6 @@ h1{
   }
 }
 
-
-
-
-
-
-
 /* Container styles */
 .form-container {
   display: flex;
@@ -162,29 +168,27 @@ h1{
   border-radius: 10px;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
   overflow: hidden;
-  
 }
 
 .login-image {
   width: 400px;
-  height: 400px;   
-  margin: 40px;           
-  background-image: url('https://scontent.fceb1-3.fna.fbcdn.net/v/t39.30808-6/362274040_257123297109556_5832240789927383297_n.png?_nc_cat=103&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeFfY5S71alXDSYMgwnypvHFpu5cnQiCDEWm7lydCIIMRaMl7zIU6GTHs_qX3MjD0h7rFg2QDLH5-zv45v6W7tIz&_nc_ohc=jNn2uwJDrCoQ7kNvwE_Iiy9&_nc_oc=AdkxTmjeDtmHVsI7MDSjSP6GCPczrvvpzAhQZtmfrOR6472A0__Ratx_XQrrUY1Wxp4&_nc_zt=23&_nc_ht=scontent.fceb1-3.fna&_nc_gid=0GItVU5BHLQlPhGxQefiQQ&oh=00_AfLml-GNuaW3C2cx_DXhJnt1xgpj10wWrz_D81Ydyc1_DQ&oe=68313A6A');
-  background-size: cover;     
+  height: 400px;
+  margin: 40px;
+  background-image: url('https://upload.wikimedia.org/wikipedia/en/c/c9/Seal_of_the_International_State_College_of_the_Philippines.png');
+  background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   background-color: #fff;
   overflow: hidden;
-  display: flex;             
+  display: flex;
   align-items: center;
   justify-content: center;
 }
 
-
 /* Header styles */
 .card-header {
-  background-color: #007bff;
-  color: #fff;
+  background-color: #000435; /* Updated to dark blue */
+  color: #ffde59; /* Updated to yellow for contrast */
   text-align: center;
   padding: 16px;
   font-size: 18px;
@@ -223,7 +227,7 @@ h1{
 
 .form-hint a {
   font-size: 11px;
-  color: #007bff;
+  color: #000435; /* Updated to dark blue */
   text-decoration: none;
 }
 
@@ -239,7 +243,7 @@ h1{
 
 .form-actions button {
   padding: 10px 20px;
-  background-color: #007bff;
+  background-color: #000435; /* Updated to dark blue */
   color: #fff;
   font-weight: bold;
   border: none;
@@ -248,7 +252,8 @@ h1{
 }
 
 .form-actions button:hover {
-  background-color: #0056b3;
+  background-color: #ffde59; /* Hover effect with yellow */
+  color: #000435; /* Updated to dark blue for contrast */
 }
 
 .signup-link {
@@ -258,14 +263,12 @@ h1{
 .signup-link a {
   font-size: 11px;
   text-decoration: none;
-  color: #007bff;
+  color: #000435; /* Updated to dark blue */
 }
 
 .signup-link a:hover {
   text-decoration: underline;
 }
-
-
 
 /* Signup Container */
 .signup-container {
@@ -316,7 +319,7 @@ input[type="text"]:focus,
 input[type="email"]:focus,
 input[type="password"]:focus {
   outline: none;
-  border-color: #007bff;
+  border-color: #000435; /* Updated to dark blue */
 }
 
 .error {
@@ -329,7 +332,7 @@ input[type="password"]:focus {
 }
 
 button.btn {
-  background-color: #007bff;
+  background-color: #000435; /* Updated to dark blue */
   color: #fff;
   border: none;
   padding: 10px 20px;
@@ -340,18 +343,11 @@ button.btn {
 }
 
 button.btn:hover {
-  background-color: #0056b3;
+  background-color: #ffde59; /* Hover effect with yellow */
+  color: #000435; /* Updated to dark blue for contrast */
 }
 
 small {
   font-size: 12px;
   color: #888;
 }
-
-
-
-
-
-
-
-
