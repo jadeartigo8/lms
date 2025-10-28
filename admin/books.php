@@ -413,6 +413,36 @@ ksort($booksByCategory);
             background: rgba(220, 53, 69, 0.95);
         }
 
+        .out-of-stock-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(220, 53, 69, 0.92);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            backdrop-filter: blur(2px);
+        }
+
+        .out-of-stock-overlay .overlay-content {
+            text-align: center;
+            color: white;
+        }
+
+        .out-of-stock-overlay i {
+            font-size: 48px;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .out-of-stock-overlay p {
+            font-size: 16px;
+            font-weight: 700;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
         .book-details {
             padding: 20px;
             flex: 1;
@@ -681,6 +711,15 @@ ksort($booksByCategory);
                             <?php $encryptedID = encrypt($book['book_id']); ?>
                             <div class="book-card">
                                 <div class="book-cover">
+                                    <?php if ($book['quantity'] == 0): ?>
+                                        <div class="out-of-stock-overlay">
+                                            <div class="overlay-content">
+                                                <i class="fas fa-ban"></i>
+                                                <p>Out of Stock</p>
+                                            </div>
+                                        </div>
+                                    <?php endif; ?>
+                                    
                                     <?php if (!empty($book['image'])): ?>
                                         <?php if (filter_var($book['image'], FILTER_VALIDATE_URL)): ?>
                                             <img src="<?= htmlentities($book['image']) ?>" alt="<?= htmlentities($book['title']) ?>">
