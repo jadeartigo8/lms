@@ -1,51 +1,167 @@
-[2025-05-04 21:12:10][INFO]: There is an attempt to log in.
-[2025-05-04 21:25:58][INFO]: There is an attempt to log in.
-[2025-05-04 21:27:40][INFO]: Admin is logged in.
-[2025-05-07 23:29:46][INFO]: Admin is logged in.
-[2025-05-07 23:34:05][INFO]: Admin is logged in.
-[2025-05-13 13:41:02][INFO]: Admin is logged in.
-[2025-05-13 13:42:59][INFO]: Book returned. ID: 18
-[2025-05-13 13:59:40][INFO]: Admin is logged in.
-[2025-05-13 14:35:12][INFO]: Issued book: Starless
-[2025-05-13 14:43:29][INFO]: Book returned. ID: 19
-[2025-05-13 14:51:55][INFO]: Issued book: Starless
-[2025-05-13 14:52:19][INFO]: Book returned. ID: 21
-[2025-05-13 14:54:25][INFO]: Issued book: Starless
-[2025-05-13 14:55:45][INFO]: Book returned. ID: 22
-[2025-05-13 15:06:18][INFO]: Book returned. ID: 22
-[2025-05-13 15:07:10][INFO]: Issued book: Starless
-[2025-05-13 15:07:49][INFO]: Issued book: The Hunger Games 
-[2025-05-13 15:08:43][INFO]: There is an attempt to log in.
-[2025-05-13 15:08:52][INFO]: Admin is logged in.
-[2025-05-13 15:13:57][INFO]: Book returned. ID: 23
-[2025-05-13 15:21:02][INFO]: Admin is logged in.
-[2025-05-13 15:25:27][INFO]: Issued book: The Hunger Games 
-[2025-05-18 21:51:49][INFO]: There is an attempt to log in.
-[2025-05-18 21:52:04][INFO]: Admin is logged in.
-[2025-05-19 14:20:51][INFO]: Admin is logged in.
-[2025-05-19 14:36:20][INFO]: Book returned. ID: 24
-[2025-05-19 14:59:24][INFO]: Book returned. ID: 25
-[2025-05-19 19:23:20][INFO]: Admin is logged in.
-[2025-05-19 20:09:27][INFO]: There is an attempt to log in.
-[2025-05-19 20:09:36][INFO]: Admin is logged in.
-[2025-05-19 20:18:52][INFO]: Student added: xcvmlkcxxcvmkmlm, xcvxz
-[2025-05-20 01:09:48][INFO]: Admin is logged in.
-[2025-05-20 01:12:02][INFO]: Admin is logged in.
-[2025-05-20 01:26:29][INFO]: Admin is logged in.
-[2025-05-20 02:02:14][INFO]: Admin is logged in.
-[2025-05-20 10:17:56][INFO]: Admin is logged in.
-[2025-05-25 03:11:00][INFO]: Admin is logged in.
-[2025-05-25 13:20:21][INFO]: There is an attempt to log in.
-[2025-05-25 13:20:34][INFO]: There is an attempt to log in.
-[2025-05-25 13:21:11][INFO]: There is an attempt to log in.
-[2025-05-25 13:21:29][INFO]: Admin is logged in.
-[2025-05-25 15:40:44][INFO]: Student information updated. Jade, Artigo
-[2025-05-25 15:41:43][INFO]: Student information updated. Nestnie, Honrada
-[2025-05-25 15:48:05][INFO]: There is an attempt to log in.
-[2025-05-25 15:48:13][INFO]: Admin is logged in.
-[2025-05-25 15:49:46][INFO]: Student added: JM, Samante
-[2025-05-25 19:28:14][INFO]: Admin is logged in.
-[2025-05-25 21:13:49][INFO]: Student deleted. 2310074-2
-[2025-05-25 21:14:48][INFO]: Issued book: The Hunger Games
-[2025-05-25 21:16:07][INFO]: Book The Hunger Games  updated
-[2025-05-25 21:16:21][INFO]: Issued book: The Hunger Games
+[2025-09-16 14:49:48][INFO]: Failed login attempt for email: jmsamante13@gmail.com
+[2025-09-16 14:50:00][INFO]: Admin is logged in.
+[2025-09-16 15:25:58][INFO]: Failed login attempt for email: jmsamante13@gmail.com
+[2025-09-16 15:26:05][INFO]: Successull login attepmt
+[2025-09-16 15:26:05][INFO]: Admin is logged in.
+[2025-09-21 16:50:42][INFO]: Successull login attepmt
+[2025-09-21 16:50:42][INFO]: Admin is logged in.
+[2025-09-21 19:44:47][INFO]: Successull login attepmt
+[2025-09-21 19:44:47][INFO]: Admin is logged in.
+[2025-09-21 20:18:48][INFO]: Student added: JL, Samante
+[2025-09-22 19:26:27][INFO]: Successull login attepmt
+[2025-09-22 19:26:27][INFO]: Admin is logged in.
+[2025-09-22 22:43:31][INFO]: Student added: James, Park, Course: BS in Information Technology, Specialization: Programming
+[2025-09-22 22:45:04][INFO]: Student added: James, Park, Course: Bachelor of Elementary Education, Specialization: General Education
+[2025-09-22 22:45:29][INFO]: Student deleted. 2310001-1
+[2025-09-22 22:45:32][INFO]: Student deleted. 2310028-2
+[2025-09-22 22:45:34][INFO]: Student deleted. 2310072-1
+[2025-09-22 22:45:36][INFO]: Student deleted. 2310074-1
+[2025-09-22 22:45:39][INFO]: Student deleted. 2310074-2
+[2025-09-22 22:45:41][INFO]: Student deleted. 2510001-1
+[2025-09-22 22:45:44][INFO]: Student deleted. 2510002-1
+[2025-09-22 22:45:47][INFO]: Student deleted. 2510054-1
+[2025-09-23 11:08:04][INFO]: Successull login attepmt
+[2025-09-23 11:08:04][INFO]: Admin is logged in.
+[2025-09-23 11:27:10][INFO]: Successull login attepmt
+[2025-09-23 11:27:10][INFO]: Admin is logged in.
+[2025-09-23 11:36:28][INFO]: Failed login attempt for email: jmsamante13@gmail.com
+[2025-09-23 11:37:08][INFO]: Failed login attempt for email: jmsamante13@gmail.com
+[2025-09-23 11:38:34][INFO]: Successull login attepmt
+[2025-09-23 11:38:34][INFO]: Admin is logged in.
+[2025-09-23 11:45:02][INFO]: Error fetching admin details: Unknown column 'full_name' in 'field list'
+[2025-09-23 11:45:42][INFO]: Error fetching admin details: Unknown column 'full_name' in 'field list'
+[2025-09-23 11:46:09][INFO]: Error fetching admin details: Unknown column 'full_name' in 'field list'
+[2025-09-23 11:47:01][INFO]: Error fetching admin details: Unknown column 'full_name' in 'field list'
+[2025-09-23 11:47:44][INFO]: Error fetching admin details: Unknown column 'full_name' in 'field list'
+[2025-09-23 11:48:01][INFO]: Error fetching admin details: Unknown column 'full_name' in 'field list'
+[2025-09-23 11:48:11][INFO]: Error fetching admin details: Unknown column 'full_name' in 'field list'
+[2025-09-23 11:48:19][INFO]: Error fetching admin details: Unknown column 'full_name' in 'field list'
+[2025-09-23 11:48:39][INFO]: Error fetching admin details: Unknown column 'full_name' in 'field list'
+[2025-09-23 11:48:47][INFO]: Error fetching admin details: Unknown column 'full_name' in 'field list'
+[2025-09-23 11:52:39][INFO]: Error fetching admin details: Unknown column 'age' in 'field list'
+[2025-09-23 11:53:09][INFO]: Error fetching admin details: Unknown column 'age' in 'field list'
+[2025-09-23 11:55:58][INFO]: Error fetching admin details: Unknown column 'age' in 'field list'
+[2025-09-23 11:57:09][INFO]: Successull login attepmt
+[2025-09-23 11:57:09][INFO]: Admin is logged in.
+[2025-09-23 11:57:54][INFO]: Student added: James, Park, Course: Bachelor of Elementary Education, Specialization: General Education
+[2025-09-23 11:58:17][INFO]: Error fetching admin details: Unknown column 'age' in 'field list'
+[2025-09-23 12:24:31][INFO]: Student information updated: James Park, Course: Bachelor of Elementary Education, Specialization: General Education
+[2025-09-23 12:24:57][INFO]: Blocked student: James  Park (2510001-1)
+[2025-09-23 12:25:35][INFO]: Unblocked student: James  Park (2510001-1)
+[2025-09-23 21:22:46][INFO]: Successull login attepmt
+[2025-09-23 21:22:46][INFO]: Admin is logged in.
+[2025-09-23 21:22:46][INFO]: Successull login attepmt
+[2025-09-23 21:22:46][INFO]: Admin is logged in.
+[2025-09-23 21:30:39][INFO]: Student added: Han, Park, Course: BS in Food Technology, Specialization: None
+[2025-09-23 21:52:21][INFO]: Successull login attepmt
+[2025-09-23 21:52:21][INFO]: Admin is logged in.
+[2025-09-27 17:22:27][INFO]: Successull login attepmt
+[2025-09-27 17:22:27][INFO]: Admin is logged in.
+[2025-09-27 17:23:53][INFO]: Blocked student: Han  Park (2310000-1)
+[2025-09-27 17:23:58][INFO]: Unblocked student: Han  Park (2310000-1)
+[2025-09-27 17:24:03][INFO]: Blocked student: Han  Park (2310000-1)
+[2025-09-27 17:24:18][INFO]: Unblocked student: Han  Park (2310000-1)
+[2025-09-27 17:36:05][INFO]: Student deleted: 2510001-1
+[2025-09-27 17:40:16][INFO]: Blocked student: Han  Park (2310000-1)
+[2025-09-27 17:40:20][INFO]: Unblocked student: Han  Park (2310000-1)
+[2025-09-27 17:41:54][INFO]: Student added: Jade, Aritgo, Course: BS in Information Technology, Specialization: Programming
+[2025-09-27 17:42:05][INFO]: Student deleted: 2310072-1
+[2025-09-27 17:43:39][INFO]: Student added: Jarmike, Bitang, Course: BS in Tourism Management, Specialization: None
+[2025-09-27 22:09:35][INFO]: Student deleted: 2310074-2
+[2025-09-27 22:12:28][INFO]: Student added: John, Doe, Course: BS in Tourism Management, Specialization: None
+[2025-09-27 22:29:36][INFO]: Student information updated: Han Park, Course: BS in Electrical Engineering, Specialization: None
+[2025-09-27 22:29:49][INFO]: Student information updated: Han Park, Course: BS in Electrical Engineering, Specialization: None
+[2025-09-29 20:15:39][INFO]: Successull login attepmt
+[2025-09-29 20:15:39][INFO]: Admin is logged in.
+[2025-09-29 20:16:19][INFO]: Student information updated: John Doerrr, Course: BS in Tourism Management, Specialization: None
+[2025-09-29 20:21:41][INFO]: Student information updated: Johnny Doerrr, Course: BS in Tourism Management, Specialization: None
+[2025-09-29 20:41:24][INFO]: Student information updated: Johnny Doerrr, Course: BS in Criminology, Specialization: None
+[2025-09-29 20:48:03][INFO]: Successull login attepmt
+[2025-09-29 20:48:03][INFO]: Admin is logged in.
+[2025-09-29 20:48:45][INFO]: Student information updated: Han Park, Course: BS in Electrical Engineering, Specialization: None
+[2025-09-29 20:49:32][INFO]: Student information updated: Johnny Doerrr, Course: BS in Criminology, Specialization: None
+[2025-09-30 14:37:37][INFO]: Successull login attepmt
+[2025-09-30 14:37:37][INFO]: Admin is logged in.
+[2025-09-30 14:43:47][INFO]: Successull login attepmt
+[2025-09-30 14:43:47][INFO]: Admin is logged in.
+[2025-09-30 15:00:36][INFO]: Student information updated: Han Park, Course: Bachelor of Elementary Education, Specialization: General Education
+[2025-09-30 15:00:53][INFO]: Student information updated: Han Parkour, Course: Bachelor of Elementary Education, Specialization: General Education
+[2025-09-30 15:15:35][INFO]: Email error: Email already exists. Please use a different one.
+[2025-09-30 15:15:55][INFO]: Student added: Jade Artigo, Course: BS in Information Technology, Specialization: Programming
+[2025-09-30 15:20:08][INFO]: Blocked student: Han  Parkour (2310000-1)
+[2025-09-30 15:20:13][INFO]: Unblocked student: Han  Parkour (2310000-1)
+[2025-09-30 15:20:57][INFO]: Email error: Email already exists. Please use a different one.
+[2025-09-30 15:21:24][INFO]: Email error: Email already exists. Please use a different one.
+[2025-09-30 15:21:52][INFO]: Email error: Email already exists. Please use a different one.
+[2025-09-30 15:22:09][INFO]: Student ID error: Student ID already exists. Please use a different one.
+[2025-09-30 15:22:20][INFO]: Student added: Jelliane Galia, Course: BS in Electrical Engineering, Specialization: None
+[2025-09-30 15:22:40][INFO]: Student information updated: Jelliane Galia, Course: BS in Electrical Engineering, Specialization: None
+[2025-09-30 15:29:28][INFO]: Successful login attempt for email: jmsamante13@gmail.com
+[2025-09-30 15:30:09][INFO]: Successful login attempt for email: jmsamante13@gmail.com
+[2025-09-30 15:31:18][INFO]: Issued book: The Hunger Games
+[2025-10-07 14:34:52][INFO]: Successful login attempt for email: jmsamante13@gmail.com
+[2025-10-07 14:35:13][INFO]: Student information updated: Johnny Doerrr, Course: BS in Criminology, Specialization: None
+[2025-10-07 14:37:56][INFO]: Email error: Email already exists. Please use a different one.
+[2025-10-07 14:41:19][INFO]: Email error: Email already exists. Please use a different one.
+[2025-10-07 14:41:39][INFO]: Student ID error: Student ID already exists. Please use a different one.
+[2025-10-07 14:43:04][INFO]: Student deleted: 2510074-2
+[2025-10-07 14:43:10][INFO]: Student deleted: 2510074-1
+[2025-10-07 15:35:14][INFO]: Successful login attempt for email: jmsamante13@gmail.com
+[2025-10-07 15:39:46][INFO]: Successful login attempt for email: jmsamante13@gmail.com
+[2025-10-07 15:42:26][INFO]: Successful login attempt for email: jmsamante13@gmail.com
+[2025-10-07 15:42:55][INFO]: Student ID error: Student ID already exists. Please use a different one.
+[2025-10-07 15:43:08][INFO]: Student added: Jay Artigo, Course: BS in Criminology, Specialization: None
+[2025-10-07 15:58:21][INFO]: Failed login attempt for email: jmsamante13@gmail.com: Invalid credentials.
+[2025-10-07 15:58:26][INFO]: Successful login attempt for email: jmsamante13@gmail.com
+[2025-10-21 14:47:02][INFO]: Successful login attempt for email: jmsamante13@gmail.com
+[2025-10-21 15:01:41][INFO]: Successful login attempt for email: jmsamante13@gmail.com
+[2025-10-21 15:01:49][INFO]: Admin session cleared on login page load.
+[2025-10-21 15:09:05][INFO]: Successful login attempt for email: jmsamante13@gmail.com
+[2025-10-21 15:11:37][INFO]: Successful login attempt for email: jmsamante13@gmail.com
+[2025-10-21 15:12:32][INFO]: Successful login attempt for email: jmsamante13@gmail.com
+[2025-10-23 11:09:00][INFO]: Successful login attempt for email: jmsamante13@gmail.com
+[2025-10-23 11:25:58][INFO]: User fetch error: User not found in database.
+[2025-10-23 11:26:00][INFO]: User fetch error: User not found in database.
+[2025-10-23 11:26:01][INFO]: User fetch error: User not found in database.
+[2025-10-23 11:26:01][INFO]: User fetch error: User not found in database.
+[2025-10-23 11:26:02][INFO]: User fetch error: User not found in database.
+[2025-10-23 11:26:06][INFO]: User fetch error: User not found in database.
+[2025-10-23 11:26:37][INFO]: User fetch error: User not found in database.
+[2025-10-23 11:30:29][INFO]: Error fetching announcements: Table 'alexandria3.announcements' doesn't exist
+[2025-10-23 11:32:07][INFO]: Error fetching announcements: Table 'alexandria3.announcements' doesn't exist
+[2025-10-23 11:39:39][INFO]: Error fetching announcements: Table 'alexandria3.announcements' doesn't exist
+[2025-10-23 11:43:07][INFO]: Admin jmsamante13@gmail.com (JM Samante) posted announcement: hello world
+[2025-10-23 11:47:15][INFO]: Session error: User not found or not a student.
+[2025-10-23 11:47:33][INFO]: Admin session cleared on login page load.
+[2025-10-23 11:47:44][INFO]: Successful login attempt for email: jmsamante13@gmail.com
+[2025-10-23 11:48:15][INFO]: Student ID error: Student ID already exists. Please use a different one.
+[2025-10-23 11:48:26][INFO]: Student ID error: Student ID already exists. Please use a different one.
+[2025-10-23 11:48:45][INFO]: Student added: JM Samante, Course: BS in Civil Engineering, Specialization: None
+[2025-10-23 11:49:19][INFO]: Session error: User not logged in.
+[2025-10-23 11:54:49][INFO]: Session error: User not found or not a student.
+[2025-10-23 11:54:59][INFO]: Session error: User not found or not a student.
+[2025-10-23 11:56:25][INFO]: Session error: User not found or not a student.
+[2025-10-23 20:49:24][INFO]: Successful login attempt for email: jmsamante13@gmail.com
+[2025-10-24 14:40:31][INFO]: Successful login attempt for email: jmsamante13@gmail.com
+[2025-10-26 21:56:48][INFO]: Successful login attempt for email: jmsamante13@gmail.com
+[2025-10-26 23:42:49][INFO]: Successful login attempt for email: jmsamante13@gmail.com
+[2025-10-26 23:45:02][INFO]: Admin session cleared on login page load.
+[2025-10-26 23:46:00][INFO]: Successful login attempt for email: jmsamante13@gmail.com
+[2025-10-26 23:49:07][INFO]: Successful login attempt for email: jmsamante13@gmail.com
+[2025-10-26 23:51:01][INFO]: Successful login attempt for email: jmsamante13@gmail.com
+[2025-10-28 09:28:41][INFO]: Successful login attempt for email: jmsamante13@gmail.com
+[2025-10-28 09:33:10][INFO]: Successful login attempt for email: jmsamante13@gmail.com
+[2025-10-28 09:56:44][INFO]: Admin session cleared on login page load.
+[2025-10-28 09:56:49][INFO]: Successful login attempt for email: jmsamante13@gmail.com
+[2025-10-28 10:02:19][INFO]: Admin session cleared on login page load.
+[2025-10-28 10:02:33][INFO]: Successful login attempt for email: jmsamante13@gmail.com
+[2025-10-28 10:10:00][INFO]: Book added: [Harry Potter and the Philosopher's Stone] | ISBN: 9780747532743
+[2025-10-28 10:23:18][INFO]: Book added: [The Hunger Games] | ISBN: 9780439023528
+[2025-10-28 10:23:31][INFO]: Book deleted.
+[2025-10-28 10:23:35][INFO]: Book deleted.
+[2025-10-28 10:25:50][INFO]: Book added: [Heated Rivalry] | ISBN: 9781335468437
+[2025-10-28 10:27:54][INFO]: Book added: [The Invisible Man] | ISBN: 0198702671
+[2025-10-28 10:45:27][INFO]: Book deleted.
+[2025-10-28 11:46:26][INFO]: Book added: [The Life of Justice The Path of Justice Malayalam evio] | ISBN: 9783161484100
+[2025-10-28 12:05:52][INFO]: Book added: [Harry Potter and the Chamber of Secrets] | ISBN: 9781408810552
+[2025-10-28 12:12:44][INFO]: Issued book: The Hunger Games

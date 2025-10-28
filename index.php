@@ -111,7 +111,7 @@ if (isset($_POST['login'])) {
           <div class="form-actions">
             <button type="submit" name="login">Login</button>
             <div class="signup-link">
-              <a href=""><small>Not registered yet? Create your account at the library reception.</small></a>
+              <a href=""><small>Not registered yet? Create your account.</small></a>
             </div>
 
             <div class="signup-link">

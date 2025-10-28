@@ -31,6 +31,13 @@
               <i class="fas fa-book-reader"></i> 
             </a>
           </li>
+
+          <li>
+            <a href="notepad.php" title="Notepad">
+              <i class="fas fa-note-sticky"></i> 
+            </a>
+          </li>
+
           <li>
             <a href="change-password.php" title="Change Your Password">
               <i class="fas fa-key"></i> 
@@ -40,6 +47,12 @@
             <a href="logs.php" title="View System Logs">
               <i class="fas fa-clipboard-list"></i>
             </a>
+            
+          </li>
+
+
+          
+            
           </li>
 
           <li>

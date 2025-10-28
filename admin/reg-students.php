@@ -7,14 +7,12 @@ include '../security/crypt.php';
 include 'includes/logger.php';
 date_default_timezone_set('Asia/Manila');
 
-
 if (strlen($_SESSION['alogin']) == 0) {
     header('location:../index.php');
     exit;
 }
 
 $logger = new Logger();
-
 
 function getStudentDetails($conn)
 {
@@ -25,7 +23,7 @@ function getStudentDetails($conn)
           CONCAT_WS(' ', first_name, middle_name, last_name) AS full_name 
       FROM 
           students
-  ";
+    ";
     $result = $conn->query($sql);
 
     if ($result) {
@@ -36,7 +34,6 @@ function getStudentDetails($conn)
 
     return $students;
 }
-
 
 function getStudentStatus($conn, $studentID)
 {
@@ -53,20 +50,29 @@ function getStudentStatus($conn, $studentID)
     return null;
 }
 
-
 function updateStudentStatus($conn, $studentID, $newStatus)
 {
+    global $logger;
+    // Get student's full name for logging
+    $nameStmt = $conn->prepare("SELECT CONCAT_WS(' ', first_name, middle_name, last_name) AS full_name FROM students WHERE student_id = ?");
+    $nameStmt->bind_param("s", $studentID);
+    $nameStmt->execute();
+    $nameResult = $nameStmt->get_result();
+    $full_name = $nameResult->num_rows > 0 ? $nameResult->fetch_assoc()['full_name'] : 'Unknown';
+
+    // Update status
     $stmt = $conn->prepare("UPDATE students SET status = ? WHERE student_id = ?");
     $stmt->bind_param("is", $newStatus, $studentID);
-    return $stmt->execute();
+    $success = $stmt->execute();
+
+    // Log the action
+    if ($success) {
+        $action = $newStatus == 1 ? 'Unblocked' : 'Blocked';
+        $logger->write("$action student: $full_name ($studentID)");
+    }
+
+    return $success;
 }
-
-
-if (strlen($_SESSION['alogin']) == 0) {
-    header('location:index.php');
-    exit;
-}
-
 
 if (isset($_GET['toggle'])) {
     $encryptedID = $_GET['toggle'];
@@ -96,8 +102,6 @@ if (isset($_GET['toggle'])) {
     exit;
 }
 
-
-
 if (isset($_GET['del'])) {
     $encryptedID = $_GET['del'];
     $decryptedID = decrypt($encryptedID);
@@ -108,13 +112,12 @@ if (isset($_GET['del'])) {
         exit;
     }
 
-
     $stmt = $conn->prepare("DELETE FROM students WHERE student_id = ?");
     $stmt->bind_param("s", $decryptedID);
 
     if ($stmt->execute()) {
         $_SESSION['delmsg'] = "Student deleted successfully.";
-        $logger->write("Student deleted. $decryptedID");
+        $logger->write("Student deleted: $decryptedID");
     } else {
         $_SESSION['delmsg'] = "Failed to delete student.";
     }
@@ -122,7 +125,6 @@ if (isset($_GET['del'])) {
     header("location: reg-students.php");
     exit;
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -136,13 +138,18 @@ if (isset($_GET['del'])) {
     <link rel="stylesheet" href="../css/styles.css">
     <link rel="stylesheet" href="../css/tables.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- DataTables JS -->
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
 </head>
 
 <body>
     <?php include('includes/header.php'); ?>
 
     <div class="container">
-
         <div class="header-container">
             <h2>Registered Students</h2>
             <div style="text-align: right; margin-bottom: 10px;">
@@ -151,6 +158,8 @@ if (isset($_GET['del'])) {
                     <i class="fas fa-plus"></i> Register Student
                 </a>
             </div>
+
+            <br>
 
             <?php
             $alerts = ['error', 'msg', 'updatemsg', 'delmsg'];
@@ -166,8 +175,7 @@ if (isset($_GET['del'])) {
             ?>
         </div>
 
-
-        <table>
+        <table id="studentsTable" class="display">
             <thead>
                 <tr>
                     <th>#</th>
@@ -189,6 +197,7 @@ if (isset($_GET['del'])) {
                         $encryptedID = encrypt($row['student_id']);
                         $statusLabel = $row['status'] == 1 ? 'Active' : 'Blocked';
                         $statusColor = $row['status'] == 1 ? 'green' : 'red';
+                        $actionText = $row['status'] == 1 ? 'Block' : 'Unblock';
 
                         echo "<tr>
                             <td>{$cnt}</td>
@@ -198,20 +207,17 @@ if (isset($_GET['del'])) {
                             <td>" . htmlentities($row['registration_date']) . "</td>
                             <td style='color: {$statusColor}; font-weight: bold;'>{$statusLabel}</td>
                             <td>
-                                <a class=\"btn-block\" href=\"reg-students.php?toggle=" . urlencode($encryptedID) . "\" 
-                                onclick=\"return confirm('Are you sure you want to " . ($row['status'] == 1 ? 'block' : 'unblock') . " this student?')\">
-                                " . ($row['status'] == 1 ? 'Block' : 'Unblock') . "
+                                <a class=\"btn-block toggle-btn\" href=\"reg-students.php?toggle=" . urlencode($encryptedID) . "\" 
+                                   onclick=\"return confirm('Are you sure you want to " . htmlentities(strtolower($actionText)) . " this student?')\">
+                                   {$actionText}
                                 </a>
-
                                 <a href=\"edit-student.php?id=" . urlencode($encryptedID) . "\" class=\"btn btn-sm btn-apply me-2\">
                                      Edit
                                 </a>
-
                                 <a href=\"reg-students.php?del=" . urlencode($encryptedID) . "\" class=\"btn btn-sm btn-danger\" onclick=\"return confirm('Are you sure you want to delete this student?')\">
                                      Delete
                                 </a>
                             </td>
-
                         </tr>";
                         $cnt++;
                     }
@@ -222,6 +228,29 @@ if (isset($_GET['del'])) {
             </tbody>
         </table>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize DataTable
+            $('#studentsTable').DataTable({
+                "paging": true,
+                "searching": true,
+                "ordering": true,
+                "info": true,
+                "lengthMenu": [10, 25, 50, 100],
+                "pageLength": 10,
+                "language": {
+                    "search": "Search records:",
+                    "paginate": {
+                        "first": "First",
+                        "last": "Last",
+                        "next": "Next",
+                        "previous": "Previous"
+                    }
+                }
+            });
+        });
+    </script>
 
 </body>
 

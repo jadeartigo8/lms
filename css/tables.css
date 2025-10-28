@@ -192,3 +192,12 @@ tr:hover {
   color: #000435; 
 }
 
+
+
+
+
+
+#studentsTable tbody td {
+    line-height: 40px; /* Matches row height for vertical centering */
+    padding: 8px; /* Adjust padding for better appearance */
+}
