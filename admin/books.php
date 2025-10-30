@@ -163,7 +163,6 @@ $categories = getCategories($conn);
     <div class="library-container">
         <div class="page-header">
             <div class="page-title">
-                <i class="fas fa-book-open"></i>
                 <h1>Library Collection</h1>
             </div>
             <div class="header-actions">

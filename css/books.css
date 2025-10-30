@@ -30,7 +30,7 @@ body {
 
 .page-title i {
     font-size: 36px;
-    color: rgb(32, 142, 58);
+    color: #000435;
 }
 
 .page-title h1 {
@@ -60,10 +60,13 @@ body {
 }
 
 .btn-primary {
-    background: linear-gradient(135deg, rgb(32, 142, 58), rgb(27, 120, 49));
-    color: white;
-    box-shadow: 0 4px 12px rgba(32, 142, 58, 0.3);
+    background: linear-gradient(135deg, #FFDE59, #FFD633);
+    color: black;
+    box-shadow: 0 4px 12px rgba(255, 222, 89, 0.4);
+    border: none;
+    font-weight: bold;
 }
+
 
 .btn-primary:hover {
     transform: translateY(-2px);
@@ -219,8 +222,11 @@ select.form-select:focus {
 
 .book-card:hover {
     transform: translateY(-10px) scale(1.02);
-    box-shadow: 0 10px 30px rgba(32, 142, 58, 0.2);
+    box-shadow: 0 10px 30px rgba(255, 222, 89, 0.4);
 }
+
+
+
 
 .book-card:hover .book-hover-details {
     opacity: 1;
@@ -348,7 +354,7 @@ select.form-select:focus {
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(135deg, rgba(0, 4, 53, 0.95), rgba(32, 142, 58, 0.95));
+    background: linear-gradient(135deg, rgba(0, 4, 53, 0.95), rgba(255, 222, 89, 0.95));
     color: white;
     padding: 20px;
     display: flex;
@@ -361,6 +367,7 @@ select.form-select:focus {
     border-radius: 14px;
     text-align: center;
 }
+
 
 .book-hover-details-content {
     width: 100%;

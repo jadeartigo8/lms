@@ -200,3 +200,7 @@
 [2025-10-30 15:01:01][INFO]: Issued book: How To Self-Publish A Children's Book
 [2025-10-30 15:08:24][INFO]: Book returned. Issued ID: 36 | Fine: ₱10
 [2025-10-30 15:08:40][INFO]: Book returned. Issued ID: 35 | Fine: ₱0
+[2025-10-30 15:13:00][INFO]: Book 'Heated Rivalry' (ID: 44) updated by admin.
+[2025-10-30 15:13:18][INFO]: Book 'Heated Rivalry' (ID: 44) updated by admin.
+[2025-10-30 15:20:00][INFO]: Admin session cleared on login page load.
+[2025-10-30 15:20:11][INFO]: Successful login attempt for email: jmsamante13@gmail.com
