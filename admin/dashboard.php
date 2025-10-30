@@ -62,6 +62,75 @@ if (!empty($apiKey)) {
     <link rel="stylesheet" href="../css/dashboard.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
 </head>
+<style>
+    .dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    gap: 30px;
+}
+
+.dashboard-header > div:first-child {
+    flex: 1;
+}
+
+.weather-card {
+    
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    text-align: center;
+    min-width: 250px;
+    flex-shrink: 0;
+}
+
+.weather-card h2 {
+    margin: 0 0 10px 0;
+    font-size: 1.2rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.weather-card img {
+    width: 80px;
+    height: 80px;
+    margin: -10px auto;
+}
+
+.weather-card .temp {
+    font-size: 2.5rem;
+    margin: 10px 0 5px 0;
+    font-weight: 700;
+}
+
+.weather-card p {
+    margin: 5px 0;
+    font-size: 0.95rem;
+    text-transform: capitalize;
+}
+
+.weather-card .error {
+    color: #ffebee;
+    font-style: italic;
+}
+
+/* Responsive: stack on smaller screens */
+@media (max-width: 768px) {
+    .dashboard-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .weather-card {
+        width: 100%;
+        min-width: auto;
+    }
+}
+</style>
 <body>
     <?php include 'includes/header.php'; ?>
 
@@ -69,10 +138,8 @@ if (!empty($apiKey)) {
         <div class="dashboard-header">
             <h1><strong>Admin Dashboard</strong></h1>
             <p>Welcome, <?php echo htmlentities($_SESSION['alogin']); ?>!</p>
-        </div>
 
-        <!-- Weather Widget -->
-        <div class="weather-card">
+             <div class="weather-card">
             <?php if (!empty($weatherData)): ?>
                 <h2><i class="fas fa-cloud-sun"></i> <?php echo htmlspecialchars($weatherData['name']); ?></h2>
                 <img src="https://openweathermap.org/img/wn/<?php echo $weatherData['weather'][0]['icon']; ?>@2x.png" alt="Weather Icon">
@@ -83,6 +150,11 @@ if (!empty($apiKey)) {
                 <p class="error"><?php echo $weatherError ?: 'Loading weather...'; ?></p>
             <?php endif; ?>
         </div>
+
+        </div>
+
+        <!-- Weather Widget -->
+       
 
         <div class="cards-grid">
             <div class="dashboard-card">
