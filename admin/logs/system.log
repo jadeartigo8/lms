@@ -193,3 +193,10 @@
 [2025-10-30 14:32:27][INFO]: Book added: [sdfkj] | ISBN: 9780439023528 | Category: Fiction
 [2025-10-30 14:32:46][INFO]: Book deleted.
 [2025-10-30 14:37:18][INFO]: Issued book: Heated Rivalry
+[2025-10-30 14:45:16][INFO]: Book returned. Issued ID: 33 | Fine: ₱0
+[2025-10-30 14:49:25][INFO]: Issued book: Harry Potter and the Chamber of Secrets
+[2025-10-30 15:00:06][INFO]: Book returned. Issued ID: 34 | Fine: ₱0
+[2025-10-30 15:00:29][INFO]: Issued book: The Ballad Of Songbirds And Snakes
+[2025-10-30 15:01:01][INFO]: Issued book: How To Self-Publish A Children's Book
+[2025-10-30 15:08:24][INFO]: Book returned. Issued ID: 36 | Fine: ₱10
+[2025-10-30 15:08:40][INFO]: Book returned. Issued ID: 35 | Fine: ₱0
