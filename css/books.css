@@ -378,6 +378,7 @@ select.form-select:focus {
     transition: all 0.3s ease;
     border-radius: 14px;
     text-align: center;
+    z-index: 15;
 }
 
 .book-hover-details-content {

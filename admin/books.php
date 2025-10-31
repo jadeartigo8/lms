@@ -254,7 +254,7 @@ $categories = getCategories($conn);
                             <div class="book-cover">
                                 <!-- Your existing cover code -->
                                 <?php if ($book['quantity'] == 0): ?>
-                                    <div class="out-of-stock-overlay"> ... </div>
+                                    <div class="out-of-stock-overlay"> <span style="color: white;">OUT OF STOCK</span> </div>
                                 <?php endif; ?>
 
                                 <?php
