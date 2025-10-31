@@ -7,10 +7,11 @@ body {
     font-family: 'Montserrat', sans-serif;
 }
 
+/* Updated: 24px left/right padding (1.5rem) + centered + top/bottom margin */
 .library-container {
-    max-width: 1600px;
-    margin: 0 auto;
-    padding: 20px;
+    max-width: 1400px;
+    margin: 2rem auto;
+    padding: 0 1.5rem;
 }
 
 .page-header {
@@ -19,7 +20,7 @@ body {
     align-items: center;
     margin-bottom: 35px;
     padding-bottom: 20px;
-    border-bottom: 3px solid rgba(32, 142, 58, 0.15);
+    border-bottom: 3px solid #000435;
 }
 
 .page-title {
@@ -66,7 +67,6 @@ body {
     border: none;
     font-weight: bold;
 }
-
 
 .btn-primary:hover {
     transform: translateY(-2px);
@@ -208,6 +208,15 @@ select.form-select:focus {
     padding: 5px;
 }
 
+.book-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* -------------------------------------------------
+   BOOK CARD – 3:4 ratio (classic paperback cover)
+   ------------------------------------------------- */
 .book-card {
     background: white;
     border-radius: 14px;
@@ -217,16 +226,15 @@ select.form-select:focus {
     display: flex;
     flex-direction: column;
     position: relative;
-    height: 380px;
+    height: auto;               
+    width: auto;
+    max-width: 100%;
 }
 
 .book-card:hover {
     transform: translateY(-10px) scale(1.02);
     box-shadow: 0 10px 30px rgba(255, 222, 89, 0.4);
 }
-
-
-
 
 .book-card:hover .book-hover-details {
     opacity: 1;
@@ -235,7 +243,8 @@ select.form-select:focus {
 
 .book-cover {
     width: 100%;
-    height: 240px;
+    height: 100%;               /* cover height */
+    
     background: linear-gradient(135deg, #f0f0f0, #e5e5e5);
     display: flex;
     align-items: center;
@@ -245,6 +254,9 @@ select.form-select:focus {
     border-bottom: 1px solid #e0e0e0;
 }
 
+/* -------------------------------------------------
+   IMAGE – fill the cover
+   ------------------------------------------------- */
 .book-cover img {
     width: 100%;
     height: 100%;
@@ -368,7 +380,6 @@ select.form-select:focus {
     text-align: center;
 }
 
-
 .book-hover-details-content {
     width: 100%;
 }
@@ -473,7 +484,7 @@ select.form-select:focus {
 
 @media (max-width: 768px) {
     .library-container {
-        padding: 15px;
+        padding: 0 1rem; /* Maintain 16px on mobile for readability */
     }
 
     .page-header {

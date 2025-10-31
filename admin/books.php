@@ -182,7 +182,8 @@ $categories = getCategories($conn);
             <form method="get" class="toolbar-content">
                 <div class="toolbar-left">
                     <div class="search-box">
-                        <input type="text" name="search" placeholder="Search books by title..." value="<?= htmlspecialchars($_GET['search'] ?? '') ?>" />
+                        <input type="text" name="search" placeholder="Search books by title..."
+                            value="<?= htmlspecialchars($_GET['search'] ?? '') ?>" />
                         <i class="fas fa-search"></i>
                     </div>
                 </div>
@@ -207,11 +208,16 @@ $categories = getCategories($conn);
                     </select>
 
                     <select name="sort" class="form-select" onchange="this.form.submit()">
-                        <option value="title_asc" <?= ($_GET['sort'] ?? 'title_asc') == 'title_asc' ? 'selected' : '' ?>>Alphabetical (A-Z)</option>
-                        <option value="title_desc" <?= ($_GET['sort'] ?? '') == 'title_desc' ? 'selected' : '' ?>>Title Z-A</option>
-                        <option value="category" <?= ($_GET['sort'] ?? '') == 'category' ? 'selected' : '' ?>>Sort by Category</option>
-                        <option value="qty_asc" <?= ($_GET['sort'] ?? '') == 'qty_asc' ? 'selected' : '' ?>>Stock Low-High</option>
-                        <option value="qty_desc" <?= ($_GET['sort'] ?? '') == 'qty_desc' ? 'selected' : '' ?>>Stock High-Low</option>
+                        <option value="title_asc" <?= ($_GET['sort'] ?? 'title_asc') == 'title_asc' ? 'selected' : '' ?>>
+                            Alphabetical (A-Z)</option>
+                        <option value="title_desc" <?= ($_GET['sort'] ?? '') == 'title_desc' ? 'selected' : '' ?>>Title Z-A
+                        </option>
+                        <option value="category" <?= ($_GET['sort'] ?? '') == 'category' ? 'selected' : '' ?>>Sort by
+                            Category</option>
+                        <option value="qty_asc" <?= ($_GET['sort'] ?? '') == 'qty_asc' ? 'selected' : '' ?>>Stock Low-High
+                        </option>
+                        <option value="qty_desc" <?= ($_GET['sort'] ?? '') == 'qty_desc' ? 'selected' : '' ?>>Stock
+                            High-Low</option>
                     </select>
 
                     <?php if (!empty($_GET['search']) || !empty($_GET['author']) || !empty($_GET['category']) || !empty($_GET['sort'])): ?>
@@ -242,77 +248,71 @@ $categories = getCategories($conn);
             <div class="books-grid">
                 <?php foreach ($books as $book): ?>
                     <?php $encryptedID = encrypt($book['book_id']); ?>
-                    <div class="book-card">
-                        <div class="book-cover">
-                            <?php if ($book['quantity'] == 0): ?>
-                                <div class="out-of-stock-overlay">
-                                    <div class="overlay-content">
-                                        <i class="fas fa-ban"></i>
-                                        <p>Out of Stock</p>
-                                    </div>
-                                </div>
-                            <?php endif; ?>
 
-                            <?php 
-                            $hasImage = false;
-                            $imageSrc = '';
+                    <div class="book-item"> <!-- NEW WRAPPER -->
+                        <div class="book-card">
+                            <div class="book-cover">
+                                <!-- Your existing cover code -->
+                                <?php if ($book['quantity'] == 0): ?>
+                                    <div class="out-of-stock-overlay"> ... </div>
+                                <?php endif; ?>
 
-                            if (!empty($book['image'])) {
-                                if (filter_var($book['image'], FILTER_VALIDATE_URL)) {
-                                    $imageSrc = $book['image'];
-                                    $hasImage = true;
-                                } elseif (file_exists('uploads/' . $book['image'])) {
-                                    $imageSrc = 'uploads/' . $book['image'];
-                                    $hasImage = true;
+                                <?php
+                                $hasImage = false;
+                                $imageSrc = '';
+                                if (!empty($book['image'])) {
+                                    if (filter_var($book['image'], FILTER_VALIDATE_URL)) {
+                                        $imageSrc = $book['image'];
+                                        $hasImage = true;
+                                    } elseif (file_exists('uploads/' . $book['image'])) {
+                                        $imageSrc = 'uploads/' . $book['image'];
+                                        $hasImage = true;
+                                    }
                                 }
-                            }
-                            ?>
+                                ?>
 
-                            <?php if ($hasImage): ?>
-                                <img src="<?= htmlentities($imageSrc) ?>" 
-                                    alt="<?= htmlentities($book['title']) ?>" 
-                                    onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                            <?php endif; ?>
+                                <?php if ($hasImage): ?>
+                                    <img src="<?= htmlentities($imageSrc) ?>" alt="<?= htmlentities($book['title']) ?>"
+                                        onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                <?php endif; ?>
 
-                            <!-- Only show placeholder if NO valid image -->
-                            <div class="no-image" style="display: <?= $hasImage ? 'none' : 'flex' ?>;">
-                                <i class="fas fa-book"></i>
-                                <p>No Cover</p>
+                                <div class="no-image" style="display: <?= $hasImage ? 'none' : 'flex' ?>;">
+                                    <i class="fas fa-book"></i>
+                                    <p>No Cover</p>
+                                </div>
+
+                                <span class="stock-badge <?= $book['quantity'] < 5 ? 'low' : '' ?>">
+                                    <?= htmlentities($book['quantity']) ?>
+                                </span>
                             </div>
 
-                            <span class="stock-badge <?= $book['quantity'] < 5 ? 'low' : '' ?>">
-                                <?= htmlentities($book['quantity']) ?>
-                            </span>
+                            <div class="book-hover-details">
+                                <!-- hover content -->
+                                <div class="book-hover-details-content">
+                                    <h4 class="book-hover-title"><?= htmlentities($book['title']) ?></h4>
+                                    <p class="book-hover-author"><?= htmlentities($book['author']) ?></p>
+                                    <div class="book-hover-meta">
+                                        <p class="book-hover-isbn">ISBN: <?= htmlentities($book['isbn']) ?></p>
+                                        <p class="book-hover-category">Category:
+                                            <?= htmlentities($book['category'] ?: 'Uncategorized') ?></p>
+                                    </div>
+                                    <div class="book-hover-actions">
+                                        <a href="edit-book.php?id=<?= urlencode($encryptedID) ?>" class="action-btn edit">
+                                            Edit
+                                        </a>
+                                        <a href="books.php?del=<?= urlencode($encryptedID) ?>" class="action-btn delete"
+                                            onclick="return confirmDelete('<?= addslashes($book['title']) ?>')">
+                                            Delete
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
+                        <!-- CAPTION BELOW -->
                         <div class="book-details">
                             <h3 class="book-title"><?= htmlentities($book['title']) ?></h3>
                             <p class="book-author"><?= htmlentities($book['author']) ?></p>
-                        </div>
-
-                        <!-- Hover Details -->
-                        <div class="book-hover-details">
-                            <div class="book-hover-details-content">
-                                <h4 class="book-hover-title"><?= htmlentities($book['title']) ?></h4>
-                                <p class="book-hover-author"><?= htmlentities($book['author']) ?></p>
-                                
-                                <div class="book-hover-meta">
-                                    <p class="book-hover-isbn">ISBN: <?= htmlentities($book['isbn']) ?></p>
-                                    <p class="book-hover-category">Category: <?= htmlentities($book['category'] ?: 'Uncategorized') ?></p>
-                                    <?php if (!empty($book['publisher'])): ?>
-                                        <p class="book-hover-publisher">Publisher: <?= htmlentities($book['publisher']) ?></p>
-                                    <?php endif; ?>
-                                </div>
-                                
-                                <div class="book-hover-actions">
-                                    <a href="edit-book.php?id=<?= urlencode($encryptedID) ?>" class="action-btn edit">
-                                        <i class="fas fa-edit"></i> Edit
-                                    </a>
-                                    <a href="books.php?del=<?= urlencode($encryptedID) ?>" class="action-btn delete" onclick="return confirmDelete('<?= addslashes($book['title']) ?>')">
-                                        <i class="fas fa-trash-alt"></i> Delete
-                                    </a>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 <?php endforeach; ?>
