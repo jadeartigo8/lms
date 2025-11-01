@@ -113,6 +113,18 @@ tr:hover {
   transition: border-color 0.3s ease;
 }
 
+.btn-primary {
+    background: linear-gradient(135deg, #FFDE59, #FFD633);
+    color: black;
+    box-shadow: 0 4px 12px rgba(255, 222, 89, 0.4);
+    border: none;
+    font-weight: bold;
+    padding:8px 14px;
+    border-radius:5px;
+    text-decoration:none;
+    margin-left:8px;
+}
+
 .form-control:focus {
   border-color: #000435; 
   outline: none;

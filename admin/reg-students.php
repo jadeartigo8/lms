@@ -153,8 +153,7 @@ if (isset($_GET['del'])) {
         <div class="header-container">
             <h2>Registered Students</h2>
             <div style="text-align: right; margin-bottom: 10px;">
-                <a href="signup.php" class="btn btn-primary"
-                    style="padding: 8px 14px; background-color:rgb(32, 142, 58); border: none; border-radius: 5px; color: #fff; text-decoration: none; font-weight: bold;">
+                <a href="signup.php" class="btn btn-primary">
                     <i class="fas fa-plus"></i> Register Student
                 </a>
             </div>

@@ -16,7 +16,15 @@ body .container {
   padding: 50px;
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  background-color: #ffde59;
+  background-color: #ffffff;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #FFDE59, #FFD633);
+    color: black;
+    box-shadow: 0 4px 12px rgba(255, 222, 89, 0.4);
+    border: none;
+    font-weight: bold;
 }
 
 .container-log {

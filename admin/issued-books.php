@@ -145,8 +145,7 @@ $issuedBooks = getIssuedBooks($conn, $statusFilter);
           style="padding:8px 14px;background:#0b182c;color:#fff;border-radius:5px;text-decoration:none;">
           Print as PDF
         </a>
-        <a href="issue-book.php" class="btn btn-primary"
-          style="padding:8px 14px;background:#28a745;color:#fff;border-radius:5px;text-decoration:none;margin-left:8px;">
+        <a href="issue-book.php" class="btn btn-primary">
           Issue Book
         </a>
       </div>
