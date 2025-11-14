@@ -2,7 +2,7 @@
 session_start();
 include('../connection/db.php');
 include('includes/logger.php');
-include('includes/exceptions.php'); // Reuse custom exceptions
+include('includes/exceptions.php');
 date_default_timezone_set('Asia/Manila');
 
 $logger = new Logger();
@@ -29,9 +29,15 @@ $studentiderror = "";
 $termsError = "";
 $courseError = "";
 $specializationError = "";
+$yearLevelError = "";
+$photoError = "";
 
 // Define valid courses and their specializations
 $validCourses = include('includes/courses.php');
+
+// Define valid year levels
+$validYearLevels = ['1st Year', '2nd Year', '3rd Year', '4th Year', '5th Year'];
+
 function checkEmailExists($conn, $email) {
     try {
         $stmt = $conn->prepare("SELECT * FROM students WHERE email = ?");
@@ -45,7 +51,7 @@ function checkEmailExists($conn, $email) {
         $result = $stmt->get_result();
         return $result->num_rows > 0;
     } catch (DatabaseException $e) {
-        throw $e; // Re-throw to be caught by the calling function
+        throw $e;
     } finally {
         if (isset($stmt)) {
             $stmt->close();
@@ -66,7 +72,7 @@ function checkStudentIdExists($conn, $studentid) {
         $result = $stmt->get_result();
         return $result->num_rows > 0;
     } catch (DatabaseException $e) {
-        throw $e; // Re-throw to be caught by the calling function
+        throw $e;
     } finally {
         if (isset($stmt)) {
             $stmt->close();
@@ -74,19 +80,19 @@ function checkStudentIdExists($conn, $studentid) {
     }
 }
 
-function registerStudent($conn, $studentid, $fname, $mname, $lname, $email, $mobile, $password, $course, $specialization, $status, $regDate) {
+function registerStudent($conn, $studentid, $fname, $mname, $lname, $email, $mobile, $password, $course, $specialization, $yearLevel, $profileImage, $status, $regDate) {
     try {
-        $stmt = $conn->prepare("INSERT INTO students (student_id, first_name, middle_name, last_name, email, mobile_no, password, course, specialization, status, registration_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        $stmt = $conn->prepare("INSERT INTO students (student_id, first_name, middle_name, last_name, email, mobile_no, password, course, specialization, year_level, profile_image, status, registration_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
         if (!$stmt) {
             throw new DatabaseException("Statement preparation failed: " . $conn->error);
         }
-        $stmt->bind_param("sssssssssis", $studentid, $fname, $mname, $lname, $email, $mobile, $password, $course, $specialization, $status, $regDate);
+        $stmt->bind_param("sssssssssssss", $studentid, $fname, $mname, $lname, $email, $mobile, $password, $course, $specialization, $yearLevel, $profileImage, $status, $regDate);
         if (!$stmt->execute()) {
             throw new DatabaseException("Failed to register student.");
         }
         return true;
     } catch (DatabaseException $e) {
-        throw $e; // Re-throw to be caught by the calling function
+        throw $e;
     } finally {
         if (isset($stmt)) {
             $stmt->close();
@@ -102,7 +108,7 @@ function isValidName($name) {
     return preg_match("/^[a-zA-Z\s'-]+$/u", $name);
 }
 
-function validateInput($data, $validCourses) {
+function validateInput($data, $validCourses, $validYearLevels) {
     $errors = [];
     try {
         if (!preg_match('/^\d{7}-\d{1}$/', $data['studentid'])) {
@@ -129,6 +135,9 @@ function validateInput($data, $validCourses) {
         if (!empty($validCourses[$data['course']]) && (empty($data['specialization']) || !in_array($data['specialization'], $validCourses[$data['course']]))) {
             $errors['specialization'] = "Please select a valid specialization for the chosen course.";
         }
+        if (empty($data['year_level']) || !in_array($data['year_level'], $validYearLevels)) {
+            $errors['yearLevel'] = "Please select a valid year level.";
+        }
         if ($data['password'] !== $data['confirmPassword']) {
             $errors['password'] = "Passwords do not match.";
         }
@@ -140,7 +149,7 @@ function validateInput($data, $validCourses) {
         }
         return $errors;
     } catch (ValidationException $e) {
-        return $errors; // Return errors for form display
+        return $errors;
     }
 }
 
@@ -158,12 +167,39 @@ if (isset($_POST['signup'])) {
             'confirmPassword' => $_POST['confirmpassword'],
             'course' => trim($_POST['course']),
             'specialization' => isset($_POST['specialization']) ? trim($_POST['specialization']) : null,
+            'year_level' => trim($_POST['year_level'] ?? ''),
             'termsAgreed' => isset($_POST['terms'])
         ];
 
+        // Handle profile image upload
+        $profileImageName = null;
+        if (isset($_FILES['profile_image']) && $_FILES['profile_image']['error'] === UPLOAD_ERR_OK) {
+            $allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif'];
+            $fileType = $_FILES['profile_image']['type'];
+            $fileSize = $_FILES['profile_image']['size'];
+            
+            if (!in_array($fileType, $allowedTypes)) {
+                $photoError = "Only JPG, PNG, and GIF images are allowed.";
+            } elseif ($fileSize > 5 * 1024 * 1024) { // 5MB limit
+                $photoError = "Image size must not exceed 5MB.";
+            } else {
+                $ext = pathinfo($_FILES['profile_image']['name'], PATHINFO_EXTENSION);
+                $profileImageName = 'student_' . time() . '_' . bin2hex(random_bytes(4)) . '.' . $ext;
+                $targetDir = "uploads/students/";
+                if (!is_dir($targetDir)) {
+                    mkdir($targetDir, 0755, true);
+                }
+                $targetFilePath = $targetDir . $profileImageName;
+                if (!move_uploaded_file($_FILES['profile_image']['tmp_name'], $targetFilePath)) {
+                    $photoError = "Failed to upload profile image.";
+                    $profileImageName = null;
+                }
+            }
+        }
+
         // Validate inputs
-        $errors = validateInput($inputData, $validCourses);
-        $hasErrors = !empty(array_filter($errors));
+        $errors = validateInput($inputData, $validCourses, $validYearLevels);
+        $hasErrors = !empty(array_filter($errors)) || !empty($photoError);
 
         if (!$hasErrors) {
             // Check for duplicates
@@ -189,13 +225,15 @@ if (isset($_POST['signup'])) {
                 $hashed_password,
                 $inputData['course'],
                 $inputData['specialization'],
+                $inputData['year_level'],
+                $profileImageName,
                 $status,
                 $registration_date
             );
 
             if ($success) {
                 $_SESSION['successmsg'] = "Your registration was successful!";
-                $logger->write("Student added: {$inputData['first_name']} {$inputData['last_name']}, Course: {$inputData['course']}, Specialization: " . ($inputData['specialization'] ?: 'None'));
+                $logger->write("Student added: {$inputData['first_name']} {$inputData['last_name']}, Course: {$inputData['course']}, Year: {$inputData['year_level']}");
                 $_POST = array();
                 header('Location: reg-students.php');
                 exit;
@@ -213,7 +251,6 @@ if (isset($_POST['signup'])) {
         $emailError = "Database error occurred.";
         $logger->write("Database error: " . $e->getMessage());
     } catch (ValidationException $e) {
-        // Validation errors are already in $errors
         $logger->write("Validation error: " . $e->getMessage());
     } catch (Exception $e) {
         $emailError = "An unexpected error occurred.";
@@ -233,6 +270,11 @@ if (isset($_POST['signup'])) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="../css/styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        .image-preview { margin-top: 10px; max-width: 200px; border-radius: 8px; display: none; }
+        .image-preview.show { display: block; }
+        .image-preview img { width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,.1); }
+    </style>
 </head>
 <body>
 <?php include('includes/header.php'); ?>
@@ -240,7 +282,7 @@ if (isset($_POST['signup'])) {
 <div class="signup-container">
     <h3>Student Signup Form</h3>
 
-    <form name="signup" method="POST" id="signupForm">
+    <form name="signup" method="POST" enctype="multipart/form-data" id="signupForm">
         <div class="section-title">Personal Information</div>
         <div class="form-group">
             <label for="studentid">Student ID <span class="required">*</span></label>
@@ -284,6 +326,17 @@ if (isset($_POST['signup'])) {
             </div>
         </div>
 
+        <div class="form-group">
+            <label for="profile_image">Profile Photo (Optional)</label>
+            <input type="file" id="profile_image" name="profile_image" accept="image/*">
+            <?php if (!empty($photoError)): ?>
+                <small class="error"><?php echo $photoError; ?></small>
+            <?php endif; ?>
+            <div class="image-preview" id="imagePreview">
+                <img src="" alt="Profile Preview" id="previewImg">
+            </div>
+        </div>
+
         <div class="section-title">Academic Information</div>
         <div class="form-row">
             <div class="form-group">
@@ -309,6 +362,22 @@ if (isset($_POST['signup'])) {
                 </select>
                 <?php if (!empty($specializationError)): ?>
                     <small class="error"><?php echo $specializationError; ?></small>
+                <?php endif; ?>
+            </div>
+
+            <div class="form-group">
+                <label for="year_level">Year Level <span class="required">*</span></label>
+                <select id="year_level" name="year_level" required>
+                    <option value="">Select year level</option>
+                    <?php foreach ($validYearLevels as $year): ?>
+                        <option value="<?php echo htmlspecialchars($year); ?>"
+                            <?php echo isset($_POST['year_level']) && $_POST['year_level'] == $year ? 'selected' : ''; ?>>
+                            <?php echo htmlspecialchars($year); ?>
+                        </option>
+                    <?php endforeach; ?>
+                </select>
+                <?php if (!empty($yearLevelError)): ?>
+                    <small class="error"><?php echo $yearLevelError; ?></small>
                 <?php endif; ?>
             </div>
         </div>
@@ -383,6 +452,24 @@ document.addEventListener('DOMContentLoaded', function() {
     const form = document.getElementById('signupForm');
     const course = document.getElementById('course');
     const specialization = document.getElementById('specialization');
+    const profileImage = document.getElementById('profile_image');
+    const imagePreview = document.getElementById('imagePreview');
+    const previewImg = document.getElementById('previewImg');
+
+    // Image preview
+    profileImage.addEventListener('change', function() {
+        const file = this.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                previewImg.src = e.target.result;
+                imagePreview.classList.add('show');
+            }
+            reader.readAsDataURL(file);
+        } else {
+            imagePreview.classList.remove('show');
+        }
+    });
 
     // Define specializations for each course
     const specializations = <?php echo json_encode($validCourses); ?>;
@@ -410,12 +497,12 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Trigger course change on page load to populate specialization if course is pre-selected
+    // Trigger course change on page load
     if (course.value) {
         course.dispatchEvent(new Event('change'));
     }
 
-    // Password match on change
+    // Password match validation
     function checkPasswordMatch() {
         const passError = document.querySelector('#confirmpassword + .error') || document.createElement('small');
         if (confirmPassword.value && password.value !== confirmPassword.value) {
@@ -430,16 +517,15 @@ document.addEventListener('DOMContentLoaded', function() {
     password.addEventListener('input', checkPasswordMatch);
     confirmPassword.addEventListener('input', checkPasswordMatch);
 
-    // Enable/disable submit button based on terms
+    // Enable/disable submit button
     terms.addEventListener('change', function() {
         submitBtn.disabled = !this.checked;
     });
 
-    // Initial check
     checkPasswordMatch();
     submitBtn.disabled = !terms.checked;
 
-    // Form submission event (additional client-side check)
+    // Form submission validation
     form.addEventListener('submit', function(e) {
         try {
             if (password.value !== confirmPassword.value) {
@@ -499,7 +585,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Student ID format validation on change
+    // Student ID format validation
     const studentId = document.getElementById('studentid');
     studentId.addEventListener('input', function() {
         const idError = this.parentNode.querySelector('.error');
