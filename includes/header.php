@@ -33,7 +33,7 @@
           </li>
            <li>
             <a href="profile.php" title="View Profile">
-              <i class="fas fa-person"></i> 
+              <i class="fas fa-user-circle"></i> 
             </a>
           </li></li>
 
