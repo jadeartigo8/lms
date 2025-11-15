@@ -320,11 +320,11 @@ curl_close($ch);
                 <i class="fas fa-hand-holding"></i>
                 <span>Issue Book</span>
             </a>
-            <a href="manage-students.php" class="quick-action-btn">
+            <a href="reg-students.php" class="quick-action-btn">
                 <i class="fas fa-user-plus"></i>
                 <span>Manage Students</span>
             </a>
-            <a href="manage-issued-books.php" class="quick-action-btn">
+            <a href="issued-books.php" class="quick-action-btn">
                 <i class="fas fa-tasks"></i>
                 <span>Manage Returns</span>
             </a>
