@@ -31,6 +31,11 @@
               <i class="fas fa-book-reader"></i> 
             </a>
           </li>
+           <li>
+            <a href="profile.php" title="View Profile">
+              <i class="fas fa-person"></i> 
+            </a>
+          </li></li>
 
 
           
