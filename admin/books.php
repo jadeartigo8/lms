@@ -282,7 +282,7 @@ $endEntry = min($currentPage * $perPage, $totalBooks);
             <div class="datatable-info">
                 <div class="datatable-length">
                     <label>
-                        Show 
+                        Show
                         <select name="per_page" onchange="changePerPage(this.value)">
                             <option value="12" <?= $perPage == 12 ? 'selected' : '' ?>>12</option>
                             <option value="24" <?= $perPage == 24 ? 'selected' : '' ?>>24</option>
@@ -301,11 +301,15 @@ $endEntry = min($currentPage * $perPage, $totalBooks);
                 <?php foreach ($books as $book): ?>
                     <?php $encryptedID = encrypt($book['book_id']); ?>
 
+                    <!-- Replace the book card section (around line 220-270) with this updated version -->
+
                     <div class="book-item">
                         <div class="book-card">
                             <div class="book-cover">
                                 <?php if ($book['quantity'] == 0): ?>
-                                    <div class="out-of-stock-overlay"> <span style="color: white;">OUT OF STOCK</span> </div>
+                                    <div class="out-of-stock-overlay">
+                                        <span style="color: white;">OUT OF STOCK</span>
+                                    </div>
                                 <?php endif; ?>
 
                                 <?php
@@ -331,10 +335,6 @@ $endEntry = min($currentPage * $perPage, $totalBooks);
                                     <i class="fas fa-book"></i>
                                     <p>No Cover</p>
                                 </div>
-
-                                <span class="stock-badge <?= $book['quantity'] < 5 ? 'low' : '' ?>">
-                                    <?= htmlentities($book['quantity']) ?>
-                                </span>
                             </div>
 
                             <div class="book-hover-details">
@@ -345,6 +345,25 @@ $endEntry = min($currentPage * $perPage, $totalBooks);
                                         <p class="book-hover-isbn">ISBN: <?= htmlentities($book['isbn']) ?></p>
                                         <p class="book-hover-category">Category:
                                             <?= htmlentities($book['category'] ?: 'Uncategorized') ?></p>
+
+                                        <?php
+                                        // Determine stock status and styling
+                                        $quantity = $book['quantity'];
+                                        $stockClass = 'in-stock';
+                                        $stockText = "In Stock: $quantity";
+
+                                        if ($quantity == 0) {
+                                            $stockClass = 'out-of-stock';
+                                            $stockText = "Out of Stock";
+                                        } elseif ($quantity < 5) {
+                                            $stockClass = 'low-stock';
+                                            $stockText = "Low Stock: $quantity";
+                                        }
+                                        ?>
+
+                                        <p class="book-hover-stock <?= $stockClass ?>">
+                                            <?= $stockText ?>
+                                        </p>
                                     </div>
                                     <div class="book-hover-actions">
                                         <a href="edit-book.php?id=<?= urlencode($encryptedID) ?>" class="action-btn edit">
@@ -373,7 +392,7 @@ $endEntry = min($currentPage * $perPage, $totalBooks);
                     <div class="datatable-info-bottom">
                         Showing <?= $startEntry ?> to <?= $endEntry ?> of <?= $totalBooks ?> entries
                     </div>
-                    
+
                     <div class="pagination">
                         <?php
                         // Build query string for pagination links
@@ -398,7 +417,7 @@ $endEntry = min($currentPage * $perPage, $totalBooks);
 
                         // Show first page
                         if ($startPage > 1):
-                        ?>
+                            ?>
                             <a href="?page=1<?= $queryString ?>" class="page-link">1</a>
                             <?php if ($startPage > 2): ?>
                                 <span class="page-link ellipsis">...</span>

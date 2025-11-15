@@ -240,11 +240,15 @@ $endEntry = min($currentPage * $perPage, $totalBooks);
 
             <div class="books-grid">
                 <?php foreach ($books as $book): ?>
+                    <!-- Replace the book card section in the books grid loop with this updated version -->
+
                     <div class="book-item">
                         <div class="book-card book-card-view-only">
                             <div class="book-cover">
                                 <?php if ($book['quantity'] == 0): ?>
-                                    <div class="out-of-stock-overlay"> <span style="color: white;">OUT OF STOCK</span> </div>
+                                    <div class="out-of-stock-overlay">
+                                        <span style="color: white;">OUT OF STOCK</span>
+                                    </div>
                                 <?php endif; ?>
 
                                 <?php
@@ -270,10 +274,6 @@ $endEntry = min($currentPage * $perPage, $totalBooks);
                                     <i class="fas fa-book"></i>
                                     <p>No Cover</p>
                                 </div>
-
-                                <span class="stock-badge <?= $book['quantity'] < 5 ? 'low' : '' ?>">
-                                    <?= htmlentities($book['quantity']) ?>
-                                </span>
                             </div>
 
                             <div class="book-info-overlay">
@@ -284,7 +284,26 @@ $endEntry = min($currentPage * $perPage, $totalBooks);
                                         <p><strong>ISBN:</strong> <?= htmlentities($book['isbn']) ?></p>
                                         <p><strong>Category:</strong> <?= htmlentities($book['category'] ?: 'Uncategorized') ?>
                                         </p>
-                                        <p><strong>Available:</strong> <?= htmlentities($book['quantity']) ?> copies</p>
+
+                                        <?php
+                                        // Determine stock status and styling
+                                        $quantity = $book['quantity'];
+                                        $stockClass = 'in-stock';
+                                        $stockLabel = 'Available';
+
+                                        if ($quantity == 0) {
+                                            $stockClass = 'out-of-stock';
+                                            $stockLabel = 'Out of Stock';
+                                        } elseif ($quantity < 5) {
+                                            $stockClass = 'low-stock';
+                                            $stockLabel = 'Low Stock';
+                                        }
+                                        ?>
+
+                                        <p class="stock-status-<?= $stockClass ?>">
+                                            <strong><?= $stockLabel ?>:</strong> <?= $quantity ?>
+                                            <?= $quantity == 1 ? 'copy' : 'copies' ?>
+                                        </p>
                                     </div>
                                 </div>
                             </div>
