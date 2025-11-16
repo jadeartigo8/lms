@@ -36,7 +36,7 @@ $photoError = "";
 $validCourses = include('includes/courses.php');
 
 // Define valid year levels
-$validYearLevels = ['1st Year', '2nd Year', '3rd Year', '4th Year', '5th Year'];
+$validYearLevels = ['1st Year', '2nd Year', '3rd Year', '4th Year'];
 
 function checkEmailExists($conn, $email) {
     try {

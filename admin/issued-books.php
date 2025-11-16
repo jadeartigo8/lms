@@ -553,56 +553,6 @@ $overdue = $conn->query("SELECT COUNT(*) as count FROM issued_books WHERE return
       }
     }
 
-    /* Print Styles */
-    @media print {
-      @page {
-        size: landscape;
-        margin: 15mm;
-      }
-
-      header,
-      .page-header,
-      .stats-grid,
-      .btn,
-      .alert,
-      .dataTables_wrapper .dataTables_length,
-      .dataTables_wrapper .dataTables_filter,
-      .dataTables_wrapper .dataTables_info,
-      .dataTables_wrapper .dataTables_paginate {
-        display: none !important;
-      }
-
-      .page-container {
-        margin: 0;
-        padding: 0;
-        max-width: 100%;
-      }
-
-      .table-container {
-        box-shadow: none;
-      }
-
-      table {
-        font-size: 10px !important;
-      }
-
-      table th:last-child,
-      table td:last-child {
-        display: none !important;
-      }
-
-      .student-avatar,
-      .student-avatar-placeholder {
-        width: 30px;
-        height: 30px;
-      }
-
-      body {
-        background: #fff !important;
-        color: #000 !important;
-      }
-    }
-
     @media (max-width: 768px) {
       .stats-grid {
         grid-template-columns: 1fr;
@@ -724,9 +674,7 @@ $overdue = $conn->query("SELECT COUNT(*) as count FROM issued_books WHERE return
         </thead>
         <tbody>
           <?php
-          if (empty($issuedBooks)) {
-            echo "<tr><td colspan='9' style='text-align:center;padding:2rem;color:#666;'>No issued books found for the selected filter.</td></tr>";
-          } else {
+          if (!empty($issuedBooks)) {
             foreach ($issuedBooks as $row) {
               $encryptedID = encrypt($row['issued_books_id']);
               $fine = is_numeric($row['fine']) ? (float) $row['fine'] : 0.0;
