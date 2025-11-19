@@ -97,3 +97,7 @@
 [2025-11-19 15:28:06][INFO]: Book returned. Issued ID: 54 | Fine: ₱0
 [2025-11-19 15:30:38][INFO]: Issued book: The Life of Jade Artigo to student: Kai  Seonbaenim
 [2025-11-19 15:33:49][INFO]: Failed login attempt for email: jksjdal@gmail.com: Invalid credentials.
+[2025-11-19 15:44:56][INFO]: Successful login attempt for email: jmsamante13@gmail.com
+[2025-11-19 15:45:01][INFO]: Admin session cleared on login page load.
+[2025-11-19 15:45:16][INFO]: Failed login attempt for email: jmsamante13@gmail.com: Invalid email or password.
+[2025-11-19 15:45:37][INFO]: Successful login attempt for email: jmsamante13@gmail.com

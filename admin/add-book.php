@@ -481,128 +481,23 @@ include('includes/header.php');
 <script src="https://cdnjs.cloudflare.com/ajax/libs/quagga/0.12.1/quagga.min.js"></script>
 
 <script>
-document.addEventListener('DOMContentLoaded', function () {
-    // ──────────────────────────────────────────────────────────────
-    // Elements
-    // ──────────────────────────────────────────────────────────────
-    const modeTabs          = document.querySelectorAll('.mode-tab');
-    const sections          = document.querySelectorAll('.entry-section');
+document.addEventListener('DOMContentLoaded', function() {
+    const modeTabs = document.querySelectorAll('.mode-tab');
+    const sections = document.querySelectorAll('.entry-section');
+    const searchIsbn = document.getElementById('searchIsbn');
+    const lookupBtn = document.getElementById('lookupBtn');
+    const scanBtn = document.getElementById('scanBtn');
+    const loading = document.getElementById('loadingIndicator');
+    const apiResult = document.getElementById('apiResult');
+    const bookPreview = document.getElementById('bookPreview');
+    const scannerModal = document.getElementById('scannerModal');
+    const closeScanner = document.getElementById('closeScanner');
 
-    // Search mode
-    const searchIsbn        = document.getElementById('searchIsbn');
-    const lookupBtn         = document.getElementById('lookupBtn');
-    const scanBtn           = document.getElementById('scanBtn');
-    const loading           = document.getElementById('loadingIndicator');
-    const apiResult         = document.getElementById('apiResult');
-    const bookPreview       = document.getElementById('bookPreview');
-
-    // Manual mode
-    const manualForm        = document.getElementById('manualForm');
-    const manualIsbn        = manualForm.querySelector('input[name="isbn"]');
-    const manualTitle       = manualForm.querySelector('input[name="title"]');
-    const manualAuthor      = manualForm.querySelector('input[name="author"]');
-    const manualQuantity    = manualForm.querySelector('input[name="quantity"]');
-    const manualCategory    = manualForm.querySelector('select[name="category"]');
-
-    // Scanner
-    const scannerModal      = document.getElementById('scannerModal');
-    const closeScanner      = document.getElementById('closeScanner');
     let scannerActive = false;
 
-    // ──────────────────────────────────────────────────────────────
-    // Helper: show inline error
-    // ──────────────────────────────────────────────────────────────
-    function showError(input, message) {
-        hideError(input);
-        const err = document.createElement('span');
-        err.className = 'inline-error';
-        err.style.color = '#d32f2f';
-        err.style.fontSize = '12px';
-        err.style.marginTop = '4px';
-        err.style.display = 'block';
-        err.textContent = message;
-        input.parentNode.appendChild(err);
-        input.classList.add('error-border');
-    }
-
-    function hideError(input) {
-        const existing = input.parentNode.querySelector('.inline-error');
-        if (existing) existing.remove();
-        input.classList.remove('error-border');
-    }
-
-    // ──────────────────────────────────────────────────────────────
-    // Real-time validation – ISBN (both modes)
-    // ──────────────────────────────────────────────────────────────
-    function validateIsbn(isbnValue) {
-        const cleaned = isbnValue.replace(/[^0-9X]/gi, '');
-        if (cleaned.length === 0) return 'ISBN is required';
-        if (cleaned.length !== 10 && cleaned.length !== 13) return 'ISBN must be 10 or 13 digits';
-        return ''; // valid
-    }
-
-    // Search mode ISBN
-    searchIsbn.addEventListener('input', function () {
-        const msg = validateIsbn(this.value);
-        if (msg) {
-            showError(this, msg);
-            lookupBtn.disabled = true;
-        } else {
-            hideError(this);
-            lookupBtn.disabled = false;
-        }
-    });
-
-    // Manual mode ISBN
-    manualIsbn.addEventListener('input', function () {
-        const msg = validateIsbn(this.value);
-        if (msg) showError(this, msg);
-        else hideError(this);
-    });
-
-    // ──────────────────────────────────────────────────────────────
-    // Real-time validation – Manual form fields
-    // ──────────────────────────────────────────────────────────────
-    manualTitle.addEventListener('input', function () {
-        if (this.value.trim().length < 2) showError(this, 'Title must be at least 2 characters');
-        else hideError(this);
-    });
-
-    manualAuthor.addEventListener('input', function () {
-        if (this.value.trim().length < 2) showError(this, 'Author must be at least 2 characters');
-        else hideError(this);
-    });
-
-    manualQuantity.addEventListener('input', function () {
-        const val = parseInt(this.value);
-        if (isNaN(val) || val < 1) showError(this, 'Quantity must be at least 1');
-        else hideError(this);
-    });
-
-    manualCategory.addEventListener('change', function () {
-        if (!this.value) showError(this, 'Please select a category');
-        else hideError(this);
-    });
-
-    // Prevent manual form submit when there are visible errors
-    manualForm.addEventListener('submit', function (e) {
-        let hasError = false;
-
-        [manualIsbn, manualTitle, manualAuthor, manualQuantity, manualCategory].forEach(field => {
-            if (field.parentNode.querySelector('.inline-error')) hasError = true;
-        });
-
-        if (hasError) {
-            e.preventDefault();
-            alert('Please fix the errors before submitting.');
-        }
-    });
-
-    // ──────────────────────────────────────────────────────────────
-    // Mode switching (unchanged)
-    // ──────────────────────────────────────────────────────────────
+    // Mode switching
     modeTabs.forEach(tab => {
-        tab.addEventListener('click', function () {
+        tab.addEventListener('click', function() {
             modeTabs.forEach(t => t.classList.remove('active'));
             this.classList.add('active');
             sections.forEach(s => s.classList.remove('active'));
@@ -610,26 +505,90 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    // ──────────────────────────────────────────────────────────────
-    // ISBN lookup (unchanged except button state)
-    // ──────────────────────────────────────────────────────────────
+    // Lookup
     lookupBtn.addEventListener('click', () => {
         const isbn = searchIsbn.value.trim();
         if (!isbn) return alert('Please enter an ISBN');
         performLookup(isbn);
     });
 
+    // Scan
+    scanBtn.addEventListener('click', () => {
+        if (scannerActive) stopScanner();
+        else startScanner();
+    });
+    closeScanner.addEventListener('click', stopScanner);
+
+    // Enter key
     searchIsbn.addEventListener('keypress', e => {
         if (e.key === 'Enter') { e.preventDefault(); lookupBtn.click(); }
     });
 
-    // ──────────────────────────────────────────────────────────────
-    // Barcode scanner (unchanged)
-    // ──────────────────────────────────────────────────────────────
-    scanBtn.addEventListener('click', () => {
-        scannerActive ? stopScanner() : startScanner();
-    });
-    closeScanner.addEventListener('click', stopScanner);
+    function performLookup(isbn) {
+        loading.style.display = 'block';
+        apiResult.style.display = 'none';
+        bookPreview.classList.remove('show');
+        lookupBtn.disabled = true;
+
+        fetch(`?lookup_isbn=${encodeURIComponent(isbn)}`)
+            .then(r => r.json())
+            .then(data => {
+                loading.style.display = 'none';
+                lookupBtn.disabled = false;
+
+                if (data.success) {
+                    displayBookPreview(data.data, isbn);
+                } else {
+                    apiResult.className = 'api-result api-error';
+                    apiResult.innerHTML = `<strong>Error:</strong> ${data.message}`;
+                    apiResult.style.display = 'block';
+                }
+            })
+            .catch(err => {
+                loading.style.display = 'none';
+                lookupBtn.disabled = false;
+                apiResult.className = 'api-result api-error';
+                apiResult.innerHTML = '<strong>Error:</strong> Network issue.';
+                apiResult.style.display = 'block';
+            });
+    }
+
+    function displayBookPreview(book, isbn) {
+        apiResult.className = 'api-result api-success';
+        apiResult.innerHTML = '<strong>Book found!</strong> Review and add to library.';
+        apiResult.style.display = 'block';
+
+        document.getElementById('previewTitle').textContent = book.title || 'N/A';
+        document.getElementById('previewAuthor').textContent = book.authors?.join(', ') || 'Unknown';
+        document.getElementById('previewCategory').textContent = book.category || 'General';
+        document.getElementById('previewIsbn').textContent = isbn;
+        document.getElementById('previewPublisher').textContent = book.publishers?.join(', ') || 'N/A';
+        document.getElementById('previewDate').textContent = book.publish_date || 'N/A';
+
+        const coverImg = document.getElementById('previewCoverImg');
+        if (book.cover) {
+            coverImg.src = book.cover;
+            coverImg.style.display = 'block';
+        } else {
+            coverImg.style.display = 'none';
+        }
+
+        const badge = document.getElementById('typeBadge');
+        const type = book.type;
+        badge.textContent = type;
+        badge.style.background = 
+            type === 'Fiction' ? '#e91e63' :
+            type === 'Non-Fiction' ? '#2196f3' :
+            type === 'Special' ? '#9c27b0' : '#607d8b';
+
+        document.getElementById('hiddenTitle').value = book.title || '';
+        document.getElementById('hiddenAuthor').value = book.authors?.join(', ') || '';
+        document.getElementById('hiddenCategory').value = book.category || '';
+        document.getElementById('hiddenIsbn').value = isbn;
+        document.getElementById('hiddenCover').value = book.cover || '';
+
+        bookPreview.classList.add('show');
+    }
 
     function startScanner() {
         scannerModal.style.display = 'block';
@@ -646,7 +605,11 @@ document.addEventListener('DOMContentLoaded', function () {
             },
             decoder: { readers: ["ean_reader","ean_8_reader","upc_reader","upc_e_reader"] }
         }, err => {
-            if (err) { alert('Camera access denied or not available'); stopScanner(); return; }
+            if (err) {
+                alert('Camera access denied.');
+                stopScanner();
+                return;
+            }
             Quagga.start();
         });
 
@@ -654,7 +617,6 @@ document.addEventListener('DOMContentLoaded', function () {
             const code = result.codeResult.code;
             if (code) {
                 searchIsbn.value = code;
-                hideError(searchIsbn);
                 stopScanner();
                 performLookup(code);
             }
@@ -672,84 +634,8 @@ document.addEventListener('DOMContentLoaded', function () {
     document.addEventListener('keydown', e => {
         if (e.key === 'Escape' && scannerActive) stopScanner();
     });
-
-    // ──────────────────────────────────────────────────────────────
-    // Perform lookup & preview (unchanged)
-    // ──────────────────────────────────────────────────────────────
-    function performLookup(isbn) {
-        loading.style.display = 'block';
-        apiResult.style.display = 'none';
-        bookPreview.classList.remove('show');
-        lookupBtn.disabled = true;
-
-        fetch(`?lookup_isbn=${encodeURIComponent(isbn)}`)
-            .then(r => r.json())
-            .then(data => {
-                loading.style.display = 'none';
-                lookupBtn.disabled = false;
-
-                if (data.success) {
-                    displayBookPreview(data.data, isbn);
-                } else {
-                    apiResult.className = 'api-result api-error';
-                    apiResult.innerHTML = `<strong>Not found:</strong> ${data.message}`;
-                    apiResult.style.display = 'block';
-                }
-            })
-            .catch(() => {
-                loading.style.display = 'none';
-                lookupBtn.disabled = false;
-                apiResult.className = 'api-result api-error';
-                apiResult.innerHTML = '<strong>Error:</strong> Network problem.';
-                apiResult.style.display = 'block';
-            });
-    }
-
-    function displayBookPreview(book, isbn) {
-        apiResult.className = 'api-result api-success';
-        apiResult.innerHTML = '<strong>Book found!</strong> Review details below.';
-        apiResult.style.display = 'block';
-
-        document.getElementById('previewTitle').textContent      = book.title || 'N/A';
-        document.getElementById('previewAuthor').textContent     = book.authors?.join(', ') || 'Unknown';
-        document.getElementById('previewCategory').textContent  = book.category || 'General';
-        document.getElementById('previewIsbn').textContent      = isbn;
-        document.getElementById('previewPublisher').textContent = book.publishers?.join(', ') || 'N/A';
-        document.getElementById('previewDate').textContent      = book.publish_date || 'N/A';
-
-        const coverImg = document.getElementById('previewCoverImg');
-        if (book.cover) {
-            coverImg.src = book.cover;
-            coverImg.style.display = 'block';
-        } else {
-            coverImg.style.display = 'none';
-        }
-
-        const badge = document.getElementById('typeBadge');
-        const type = book.type || 'General';
-        badge.textContent = type;
-        badge.style.background =
-            type === 'Fiction'     ? '#e91e63' :
-            type === 'Non-Fiction' ? '#2196f3' :
-            type === 'Special'     ? '#9c27b0' : '#607d8b';
-
-        // Fill hidden fields
-        document.getElementById('hiddenTitle').value    = book.title || '';
-        document.getElementById('hiddenAuthor').value   = book.authors?.join(', ') || '';
-        document.getElementById('hiddenCategory').value = book.category || '';
-        document.getElementById('hiddenIsbn').value     = isbn;
-        document.getElementById('hiddenCover').value    = book.cover || '';
-
-        bookPreview.classList.add('show');
-    }
 });
 </script>
-
-<!-- Optional: tiny CSS for error styling (add inside your <style> block or styles.css) -->
-<style>
-    .error-border { border: 1px solid #d32f2f !important; }
-    .inline-error { font-weight: 500; }
-</style>
 
 </body>
 </html>
