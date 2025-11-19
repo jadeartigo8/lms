@@ -15,3 +15,59 @@
 [2025-11-15 16:50:51][INFO]: Book returned. Issued ID: 46 | Fine: ₱0
 [2025-11-16 12:27:31][INFO]: Successful login attempt for email: jmsamante13@gmail.com
 [2025-11-16 14:13:23][INFO]: Successful login attempt for email: jmsamante13@gmail.com
+[2025-11-16 14:26:15][INFO]: Blocked student: Seo Jeongwoo Woo (2510003-2)
+[2025-11-16 14:26:28][INFO]: Unblocked student: Seo Jeongwoo Woo (2510003-2)
+[2025-11-16 14:33:16][INFO]: Blocked student: Seo Jeongwoo Woo (2510003-2)
+[2025-11-16 14:33:26][INFO]: Unblocked student: Seo Jeongwoo Woo (2510003-2)
+[2025-11-16 14:50:42][INFO]: Failed login attempt for email: jmsamante13@gmail.com: Invalid credentials.
+[2025-11-16 14:50:45][INFO]: Successful login attempt for email: jmsamante13@gmail.com
+[2025-11-16 15:08:59][INFO]: Successful login attempt for email: jeongwoo@gmail.com
+[2025-11-16 15:20:51][INFO]: Admin session cleared on login page load.
+[2025-11-16 15:21:02][INFO]: Successful login attempt for email: jmsamante13@gmail.com
+[2025-11-16 15:24:29][INFO]: Admin session cleared on login page load.
+[2025-11-16 15:25:56][INFO]: Successful login attempt for email: jmsamante13@gmail.com
+[2025-11-16 15:29:17][INFO]: Successful login attempt for email: jmsamante13@gmail.com
+[2025-11-17 10:41:20][INFO]: Failed login attempt for email: jmsamante13@gmail.com: Invalid credentials.
+[2025-11-17 10:41:22][INFO]: Successful login attempt for email: jmsamante13@gmail.com
+[2025-11-17 10:47:35][INFO]: Email error: Email already exists. Please use a different one.
+[2025-11-17 10:47:56][INFO]: New student registration (pending approval): Gerald Montederamos, ID: 2510004-1, Course: Bachelor of Elementary Education, Year: 4th Year
+[2025-11-17 12:15:09][INFO]: Unblocked student: Gerald Montajes Montederamos (2510004-1)
+[2025-11-17 12:35:56][INFO]: Student deleted: 2510004-1
+[2025-11-17 12:52:47][INFO]: Book added: [The Zee Brothers : Zombie Exterminators B&W Edition] | ISBN: 9781626760073 | Category: Science Fiction
+[2025-11-17 12:53:06][INFO]: Book added: [Echoes of the Haunting Entities] | ISBN: 9781234567897 | Category: Fantasy
+[2025-11-17 12:53:31][INFO]: Book added: [Discovering Wounded Justice] | ISBN: 9780980454819 | Category: Mystery/Thriller
+[2025-11-17 12:56:29][INFO]: Book added: [Periwinkle Smith and the Big Pink Spot] | ISBN: 9781955947046 | Category: Fiction
+[2025-11-17 12:58:08][INFO]: Book added: [To be Boss on Your Own] | ISBN: 9788493630881 | Category: General Works
+[2025-11-17 13:16:34][INFO]: Book added: [Windmills and Wishes] | ISBN: 9781645702238 | Category: General Works
+[2025-11-17 13:16:57][INFO]: Book added: [The Adventures of Chee and Dae in Ishcra Bochra] | ISBN: 9781782808084 | Category: Fiction
+[2025-11-17 13:17:11][INFO]: Book added: [Seismic interferometry] | ISBN: 9780521871242 | Category: General Works
+[2025-11-17 13:17:26][INFO]: Book added: [Safety Evaluation of Profiled Thermoplastic Pavement Markings /] | ISBN: 9781723456787 | Category: General Works
+[2025-11-17 13:17:51][INFO]: Book added: [Golf's Yellow Page Directory (2000 Edition)] | ISBN: 9780967692906 | Category: General Works
+[2025-11-18 15:49:13][INFO]: Failed login attempt for email: jmsamante13@gmail.com: Invalid credentials.
+[2025-11-18 15:49:15][INFO]: Successful login attempt for email: jmsamante13@gmail.com
+[2025-11-18 15:50:03][INFO]: Book deleted.
+[2025-11-18 19:29:04][INFO]: Failed login attempt for email: jmsamante13@gmail.com: Invalid credentials.
+[2025-11-18 19:29:09][INFO]: Failed login attempt for email: jmsamante13@gmail.d: Invalid credentials.
+[2025-11-18 19:29:13][INFO]: Failed login attempt for email: jmsamante13@gmail.com: Invalid credentials.
+[2025-11-18 19:29:15][INFO]: Failed login attempt for email: jmsamante13@gmail.com: Invalid credentials.
+[2025-11-18 19:29:15][INFO]: Failed login attempt for email: jmsamante13@gmail.com: Invalid credentials.
+[2025-11-18 19:29:15][INFO]: Failed login attempt for email: jmsamante13@gmail.com: Invalid credentials.
+[2025-11-18 19:29:27][INFO]: Failed login attempt for email: jmsamante13@gmail.com: Invalid credentials.
+[2025-11-18 19:29:28][INFO]: Failed login attempt for email: jmsamante13@gmail.com: Invalid credentials.
+[2025-11-18 19:29:28][INFO]: Failed login attempt for email: jmsamante13@gmail.com: Invalid credentials.
+[2025-11-18 19:29:28][INFO]: Failed login attempt for email: jmsamante13@gmail.com: Invalid credentials.
+[2025-11-18 19:29:28][INFO]: Failed login attempt for email: jmsamante13@gmail.com: Invalid credentials.
+[2025-11-18 19:29:32][INFO]: Failed login attempt for email: jmsamante13@gmail.com: Invalid credentials.
+[2025-11-18 19:29:48][INFO]: Successful login attempt for email: jmsamante13@gmail.com
+[2025-11-18 19:41:57][INFO]: Student added: John Vincent Ausa, Course: BS in Computer Engineering, Year: 1st Year
+[2025-11-18 19:49:57][INFO]: Successful login attempt for email: han@gmail.com
+[2025-11-18 19:57:35][INFO]: Issued book: Twisted Games to student: Kai  Seonbaenim
+[2025-11-18 20:00:57][INFO]: Issued book: Twisted Games to student: Kai  Seonbaenim
+[2025-11-19 11:20:32][INFO]: Failed login attempt for email: jmsamante13@gmail.com: Invalid credentials.
+[2025-11-19 11:20:34][INFO]: Successful login attempt for email: jmsamante13@gmail.com
+[2025-11-19 11:25:10][INFO]: Successful login attempt for email: jmsamante13@gmail.com
+[2025-11-19 11:26:56][INFO]: Book added: [Twisted Hate - Special Edition] | ISBN: 9781735056692 | Category: Romance
+[2025-11-19 11:29:04][INFO]: Issued book: Twisted Hate - Special Edition to student: Kai  Seonbaenim
+[2025-11-19 11:31:29][INFO]: Book added: [Twisted Love; Horizons] | ISBN: 9798227388261 | Category: Fiction
+[2025-11-19 11:33:45][INFO]: Issued book: Twisted Love; Horizons to student: Kai  Seonbaenim
+[2025-11-19 11:41:51][INFO]: Student added: Vince Maunes, Course: Bachelor of Elementary Education, Year: 4th Year

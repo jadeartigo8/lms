@@ -359,7 +359,7 @@ curl_close($ch);
         <div class="cards-grid">
             <div class="dashboard-card success"><h3><?=$activeStudents?> <i class="fas fa-user-check"></i></h3><p>Active Students</p></div>
             <div class="dashboard-card danger"><h3><?=$blockedStudents?> <i class="fas fa-user-lock"></i></h3><p>Blocked Students</p></div>
-            <div class="dashboard-card warning"><h3><?=$pendingApproval?> <i class="fas fa-user-clock"></i></h3><p>Pending Approval</p></div>
+            <div class="dashboard-card warning"><h3><?=$pendingApproval?> <i class="fas fa-user-clock"></i></h3><p>Pending Approval (7 days)</p></div>
             <div class="dashboard-card"><h3><?=$totalStudents?> <i class="fas fa-users"></i></h3><p>Total Registered</p></div>
         </div>
         <?php if ($pendingApproval > 0): ?>

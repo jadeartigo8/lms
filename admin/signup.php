@@ -26,7 +26,6 @@ $firstNameError = "";
 $middleNameError = "";
 $lastNameError = "";
 $studentiderror = "";
-$termsError = "";
 $courseError = "";
 $specializationError = "";
 $yearLevelError = "";
@@ -141,9 +140,6 @@ function validateInput($data, $validCourses, $validYearLevels) {
         if ($data['password'] !== $data['confirmPassword']) {
             $errors['password'] = "Passwords do not match.";
         }
-        if (!$data['termsAgreed']) {
-            $errors['terms'] = "You must agree to the terms and conditions.";
-        }
         if (!empty($errors)) {
             throw new ValidationException("Input validation failed.");
         }
@@ -167,8 +163,7 @@ if (isset($_POST['signup'])) {
             'confirmPassword' => $_POST['confirmpassword'],
             'course' => trim($_POST['course']),
             'specialization' => isset($_POST['specialization']) ? trim($_POST['specialization']) : null,
-            'year_level' => trim($_POST['year_level'] ?? ''),
-            'termsAgreed' => isset($_POST['terms'])
+            'year_level' => trim($_POST['year_level'] ?? '')
         ];
 
         // Handle profile image upload
@@ -423,20 +418,6 @@ if (isset($_POST['signup'])) {
             </div>
         </div>
 
-        <div class="section-title"> Agreeing to Terms and Conditions</div>
-        <div class="form-row">
-            <div class="terms-group">
-                <input type="checkbox" id="terms" name="terms" required>
-                <label for="terms">I hereby solemnly agree to authorize the ISCP Library to process my personal data
-                    strictly in accordance with the provisions of Republic Act No. 10173,
-                    the Data Privacy Act of 2012, ensuring full compliance with its legal
-                    mandates and safeguards for data protection</label>
-                <?php if (!empty($termsError)): ?>
-                    <small class="error"><?php echo $termsError; ?></small>
-                <?php endif; ?>
-            </div>
-        </div>
-
         <div class="form-actions">
             <button type="submit" name="signup" class="btn" id="submitBtn">Register Now</button>
         </div>
@@ -447,7 +428,6 @@ if (isset($_POST['signup'])) {
 document.addEventListener('DOMContentLoaded', function() {
     const password = document.getElementById('password');
     const confirmPassword = document.getElementById('confirmpassword');
-    const terms = document.getElementById('terms');
     const submitBtn = document.getElementById('submitBtn');
     const form = document.getElementById('signupForm');
     const course = document.getElementById('course');
@@ -517,13 +497,7 @@ document.addEventListener('DOMContentLoaded', function() {
     password.addEventListener('input', checkPasswordMatch);
     confirmPassword.addEventListener('input', checkPasswordMatch);
 
-    // Enable/disable submit button
-    terms.addEventListener('change', function() {
-        submitBtn.disabled = !this.checked;
-    });
-
     checkPasswordMatch();
-    submitBtn.disabled = !terms.checked;
 
     // Form submission validation
     form.addEventListener('submit', function(e) {
@@ -531,10 +505,6 @@ document.addEventListener('DOMContentLoaded', function() {
             if (password.value !== confirmPassword.value) {
                 e.preventDefault();
                 alert('Passwords do not match. Please try again.');
-            }
-            if (!terms.checked) {
-                e.preventDefault();
-                alert('You must agree to the terms and conditions.');
             }
             if (!course.value) {
                 e.preventDefault();
