@@ -72,3 +72,12 @@
 [2025-11-19 11:33:45][INFO]: Issued book: Twisted Love; Horizons to student: Kai  Seonbaenim
 [2025-11-19 11:41:51][INFO]: Student added: Vince Maunes, Course: Bachelor of Elementary Education, Year: 4th Year
 [2025-11-19 13:38:23][INFO]: Successful login attempt for email: jmsamante13@gmail.com
+[2025-11-19 13:53:47][INFO]: Book added: [Jade and Casas] | ISBN: 6969696969 | Category: Fiction
+[2025-11-19 14:00:49][INFO]: Failed login attempt for email: jmsamante13@gmail.com: Invalid credentials.
+[2025-11-19 14:00:52][INFO]: Successful login attempt for email: jmsamante13@gmail.com
+[2025-11-19 14:01:14][INFO]: Failed login attempt for email: jmsamante13@gmail.com: Invalid credentials.
+[2025-11-19 14:01:16][INFO]: Successful login attempt for email: jmsamante13@gmail.com
+[2025-11-19 14:02:16][INFO]: Book deleted.
+[2025-11-19 14:08:13][INFO]: Admin session cleared on login page load.
+[2025-11-19 14:08:27][INFO]: Successful login attempt for email: jmsamante13@gmail.com
+[2025-11-19 14:18:48][INFO]: Issued book: Dune: Deluxe Edition to student: Kai  Seonbaenim

@@ -3,7 +3,7 @@ session_start();
 date_default_timezone_set('Asia/Manila');
 
 include('../connection/db.php'); 
-include('includes/header.php'); 
+
 include('includes/logger.php');
 
 $logger = new Logger();
@@ -149,6 +149,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 }
+
+include('includes/header.php'); 
 ?>
 
 <!DOCTYPE html>
