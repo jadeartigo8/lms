@@ -81,3 +81,19 @@
 [2025-11-19 14:08:13][INFO]: Admin session cleared on login page load.
 [2025-11-19 14:08:27][INFO]: Successful login attempt for email: jmsamante13@gmail.com
 [2025-11-19 14:18:48][INFO]: Issued book: Dune: Deluxe Edition to student: Kai  Seonbaenim
+[2025-11-19 14:23:52][INFO]: Book added: [hello] | ISBN: 6969696969 | Category: Fiction
+[2025-11-19 14:24:19][INFO]: Book 'The Life of Jade Artigo' (ID: 75) updated by admin.
+[2025-11-19 14:25:10][INFO]: Issued book: The Life of Jade Artigo to student: Kai  Seonbaenim
+[2025-11-19 14:44:15][INFO]: Book deleted.
+[2025-11-19 14:44:26][INFO]: Book deleted.
+[2025-11-19 14:44:30][INFO]: Book deleted.
+[2025-11-19 14:44:38][INFO]: Book deleted.
+[2025-11-19 15:14:19][INFO]: Book added: [sda] | ISBN: 9780439023528 | Category: Fiction
+[2025-11-19 15:22:04][INFO]: Book 'sda' (ID: 76) updated by admin.
+[2025-11-19 15:26:24][INFO]: Book 'Twisted Love; Horizons' (ID: 73) updated by admin.
+[2025-11-19 15:26:38][INFO]: Book 'The Life of Jade Artigo' (ID: 75) updated by admin.
+[2025-11-19 15:26:47][INFO]: Book 'Dune: Deluxe Edition' (ID: 55) updated by admin.
+[2025-11-19 15:27:35][INFO]: Book 'The Life of Jade Artigo' (ID: 75) updated by admin.
+[2025-11-19 15:28:06][INFO]: Book returned. Issued ID: 54 | Fine: ₱0
+[2025-11-19 15:30:38][INFO]: Issued book: The Life of Jade Artigo to student: Kai  Seonbaenim
+[2025-11-19 15:33:49][INFO]: Failed login attempt for email: jksjdal@gmail.com: Invalid credentials.
