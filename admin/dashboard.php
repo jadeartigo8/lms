@@ -317,7 +317,7 @@ curl_close($ch);
                 <span>Add New Book</span>
             </a>
             <a href="issue-book.php" class="quick-action-btn">
-                <i class="fas fa-hand-holding"></i>
+                <i class="fas fa-book-reader"></i>
                 <span>Issue Book</span>
             </a>
             <a href="reg-students.php" class="quick-action-btn">
