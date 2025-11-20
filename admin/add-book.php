@@ -415,7 +415,7 @@ include('includes/header.php');
         <form method="POST" enctype="multipart/form-data" id="manualForm">
             <div class="form-group">
                 <label>ISBN <span style="color:red;">*</span></label>
-                <input type="text" name="isbn" required placeholder="Enter ISBN">
+                <input type="number" name="isbn" required placeholder="Enter ISBN">
                 <?php if ($isbnError): ?>
                     <span style="color:red;font-size:12px;"><?php echo htmlentities($isbnError); ?></span>
                 <?php endif; ?>
