@@ -804,7 +804,8 @@ select.form-select:focus {
         flex-direction: column;
     }
 
-    .btn {
+    .library-container .btn,
+    .header-actions .btn {
         width: 100%;
         justify-content: center;
         padding: 10px 20px;

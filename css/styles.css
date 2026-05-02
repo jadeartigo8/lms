@@ -29,8 +29,8 @@ body .container {
 
 .container-log {
   max-width: 1000px;
-  margin: 40px auto;
-  padding: 100px;
+  margin: 15px auto;
+  padding: 50px;
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   background-color: #ffffff;
@@ -591,7 +591,8 @@ input[type="password"]:focus {
   text-align: center;
 }
 
-button.btn {
+.signup-container button.btn,
+.form-actions button.btn {
   background-color: #000435;
   color: #fff;
   border: none;
@@ -663,7 +664,8 @@ small {
     padding: 14px;
   }
 
-  .btn {
+  .signup-container .btn,
+  .form-actions .btn {
     padding: 14px 30px;
   }
 
@@ -691,7 +693,8 @@ small {
     font-size: 16px;
   }
 
-  .btn {
+  .signup-container .btn,
+  .form-actions .btn {
     font-size: 18px;
     padding: 16px 30px;
   }

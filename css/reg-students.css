@@ -1,4 +1,4 @@
-:root {
+        :root {
             --navy: #000435;
             --gold: #ffde59;
         }
@@ -11,7 +11,7 @@
         .page-container {
             max-width: 1600px;
             margin: 2rem auto;
-            padding: 0 3rem;
+            padding: 0 0.8rem;
         }
 
         /* Stats Cards */
@@ -439,8 +439,33 @@
         }
 
         @media (max-width: 768px) {
+            .page-container {
+                padding: 0 0.75rem;
+                margin: 0.75rem auto;
+            }
+
             .stats-grid {
-                grid-template-columns: 1fr;
+                grid-template-columns: 1fr 1fr;
+                gap: 0.75rem;
+            }
+
+            .stat-card {
+                padding: 1rem;
+                gap: 0.75rem;
+            }
+
+            .stat-icon {
+                width: 48px;
+                height: 48px;
+                font-size: 1.4rem;
+            }
+
+            .stat-value {
+                font-size: 1.4rem;
+            }
+
+            .stat-label {
+                font-size: 0.78rem;
             }
 
             .page-header {
@@ -457,5 +482,3 @@
                 justify-content: center;
             }
         }
-
-        

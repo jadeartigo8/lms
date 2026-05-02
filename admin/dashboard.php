@@ -277,7 +277,7 @@ curl_close($ch);
         .dashboard-header { flex-direction:column; text-align:center; }
         .dashboard-header h1 { font-size:1.8rem; }
         .dashboard-header .weather-section { width:100%; justify-content:center; }
-        .cards-grid{grid-template-columns:1fr;}
+        .cards-grid{grid-template-columns:1fr 1fr;}
         .quick-actions-grid{grid-template-columns:1fr;}
     }
   </style>

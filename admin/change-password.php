@@ -185,6 +185,7 @@ if (empty($fullName)) {
             font-size: 1rem;
             transition: all 0.3s ease;
             font-family: 'Montserrat', sans-serif;
+            box-sizing: border-box;
         }
 
         .form-control:focus {
@@ -208,6 +209,8 @@ if (empty($fullName)) {
             cursor: pointer;
             font-size: 1.1rem;
             padding: 0.25rem;
+            width: auto !important;
+            max-width: none !important;
         }
 
         .password-toggle:hover {
@@ -229,38 +232,44 @@ if (empty($fullName)) {
             margin: 0.25rem 0;
         }
 
-        .btn {
-            padding: 0.75rem 1.5rem;
-            border: none;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 1rem;
+        /* Scoped button styles to prevent styles.css from overriding */
+        .form-actions .btn {
+            padding: 0.75rem 1.5rem !important;
+            border: none !important;
+            border-radius: 8px !important;
+            font-weight: 600 !important;
+            cursor: pointer !important;
+            transition: all 0.3s ease !important;
+            text-decoration: none !important;
+            display: inline-flex !important;
+            align-items: center !important;
+            gap: 0.5rem !important;
+            font-size: 1rem !important;
+            width: auto !important;
+            max-width: none !important;
+            box-sizing: border-box !important;
         }
 
-        .btn-primary {
-            background: var(--navy);
-            color: white;
+        .form-actions .btn-primary {
+            background: var(--navy) !important;
+            color: white !important;
         }
 
-        .btn-primary:hover {
-            background: #001a52;
+        .form-actions .btn-primary:hover {
+            background: #001a52 !important;
             transform: translateY(-2px);
             box-shadow: 0 4px 12px rgba(0,0,0,.2);
         }
 
-        .btn-secondary {
-            background: #6c757d;
-            color: white;
+        .form-actions .btn-secondary {
+            background: #6c757d !important;
+            color: white !important;
         }
 
-        .btn-secondary:hover {
-            background: #5a6268;
+        .form-actions .btn-secondary:hover {
+            background: #5a6268 !important;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,.2);
         }
 
         .form-actions {
@@ -269,6 +278,7 @@ if (empty($fullName)) {
             margin-top: 2rem;
             padding-top: 2rem;
             border-top: 2px solid #e0e0e0;
+            flex-wrap: wrap;
         }
 
         .security-tips {
@@ -300,18 +310,47 @@ if (empty($fullName)) {
             margin: 0.5rem 0;
         }
 
+        /* MOBILE */
         @media (max-width: 768px) {
             .page-container {
-                padding: 0 1rem;
+                padding: 0 1.25rem;
+                margin: 1rem auto;
+            }
+
+            .page-header {
+                padding: 1.25rem;
+                border-radius: 10px;
+                margin-bottom: 1.25rem;
+            }
+
+            .page-header h1 {
+                font-size: 1.4rem;
+            }
+
+            .card {
+                padding: 1.25rem;
+                border-radius: 10px;
             }
 
             .form-actions {
                 flex-direction: column;
+                gap: 0.75rem;
             }
 
-            .btn {
-                width: 100%;
-                justify-content: center;
+            .form-actions .btn {
+                width: 100% !important;
+                justify-content: center !important;
+            }
+        }
+
+        /* EXTRA SMALL */
+        @media (max-width: 480px) {
+            .page-container {
+                padding: 0 1rem;
+            }
+
+            .page-header h1 {
+                font-size: 1.2rem;
             }
         }
     </style>
