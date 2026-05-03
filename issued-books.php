@@ -109,7 +109,7 @@ $issuedBooks = getIssuedBooksByID($id, $conn, $statusFilter);
 
     .tab-badge {
       display: inline-block;
-      background: rgba(255, 255, 255, 0.3);
+      background: rgba(0, 0, 0, 0.1);
       padding: 2px 8px;
       border-radius: 12px;
       font-size: 12px;
@@ -127,6 +127,48 @@ $issuedBooks = getIssuedBooksByID($id, $conn, $statusFilter);
 
     .upcoming-row {
       background: #d1ecf1 !important;
+    }
+
+    /* MOBILE: grid tabs */
+    @media (max-width: 768px) {
+      .tabs-container {
+        border-bottom: none;
+        margin: 16px 0;
+      }
+
+      .tabs {
+        display: grid;
+        gap: 8px;
+      }
+
+      .tab {
+        border-radius: 8px;
+        bottom: 0;
+        text-align: center;
+        padding: 12px 8px;
+        font-size: 12px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 4px;
+      }
+
+      .tab i {
+        margin-right: 0;
+        font-size: 18px;
+      }
+
+      .tab-badge {
+        margin-left: 0;
+        font-size: 11px;
+      }
+    }
+
+    @media (max-width: 360px) {
+      .tabs {
+        grid-template-columns: 1fr;
+      }
     }
 
     @media print {
@@ -177,23 +219,28 @@ $issuedBooks = getIssuedBooksByID($id, $conn, $statusFilter);
     <div class="tabs-container">
       <div class="tabs">
         <a href="?status=all" class="tab <?= $statusFilter === 'all' ? 'active' : '' ?>">
-          <i class="fas fa-book"></i> All Books
+          <i class="fas fa-book"></i>
+          All Books
           <span class="tab-badge"><?= formatBadge(count($allBooks)) ?></span>
         </a>
         <a href="?status=not_returned" class="tab <?= $statusFilter === 'not_returned' ? 'active' : '' ?>">
-          <i class="fas fa-bookmark"></i> Currently Borrowed
+          <i class="fas fa-bookmark"></i>
+          Currently Borrowed
           <span class="tab-badge"><?= formatBadge(count($activeBooks)) ?></span>
         </a>
         <a href="?status=upcoming" class="tab <?= $statusFilter === 'upcoming' ? 'active' : '' ?>">
-          <i class="fas fa-clock"></i> Due Soon
+          <i class="fas fa-clock"></i>
+          Due Soon
           <span class="tab-badge"><?= formatBadge(count($upcomingBooks)) ?></span>
         </a>
         <a href="?status=overdue" class="tab <?= $statusFilter === 'overdue' ? 'active' : '' ?>">
-          <i class="fas fa-exclamation-triangle"></i> Overdue
+          <i class="fas fa-exclamation-triangle"></i>
+          Overdue
           <span class="tab-badge"><?= formatBadge(count($overdueBooks)) ?></span>
         </a>
         <a href="?status=returned" class="tab <?= $statusFilter === 'returned' ? 'active' : '' ?>">
-          <i class="fas fa-check-circle"></i> Returned
+          <i class="fas fa-check-circle"></i>
+          Returned
           <span class="tab-badge"><?= formatBadge(count($returnedBooks)) ?></span>
         </a>
       </div>
@@ -233,20 +280,20 @@ $issuedBooks = getIssuedBooksByID($id, $conn, $statusFilter);
                 $rowClass = 'upcoming-row';
               }
 
-              $issued = $row['issued_date'] ? date('M j, Y g:i A', strtotime($row['issued_date'])) : '—';
-              $due = $row['due_date'] ? date('M j, Y', strtotime($row['due_date'])) : '—';
-              $returned = $row['actual_return'] ? date('M j, Y g:i A', strtotime($row['actual_return'])) : '—';
+              $issued   = $row['issued_date']    ? date('M j, Y g:i A', strtotime($row['issued_date']))    : '—';
+              $due      = $row['due_date']        ? date('M j, Y',       strtotime($row['due_date']))        : '—';
+              $returned = $row['actual_return']   ? date('M j, Y g:i A', strtotime($row['actual_return']))  : '—';
               
               $fine = is_numeric($row['fine']) ? (float) $row['fine'] : 0.0;
 
               echo "<tr class='{$rowClass}'>
                       <td>{$cnt}</td>
-                      <td>". htmlentities($row['title'] ?? '') ."</td>
-                      <td>". htmlentities($row['isbn'] ?? '') ."</td>
+                      <td>" . htmlentities($row['title'] ?? '') . "</td>
+                      <td>" . htmlentities($row['isbn']  ?? '') . "</td>
                       <td>{$issued}</td>
                       <td>{$due}</td>
                       <td style='color:{$statusColor};font-weight:bold;'>{$statusText}</td>
-                      <td>₱". number_format($fine, 2) ."</td>
+                      <td>₱" . number_format($fine, 2) . "</td>
                       <td>{$returned}</td>
                     </tr>";
 

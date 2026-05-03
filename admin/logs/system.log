@@ -130,3 +130,5 @@
 [2026-05-02 19:42:43][INFO]: Successful login attempt for email: jmsamante13@gmail.com
 [2026-05-02 20:00:35][INFO]: Successful login attempt for email: jmsamante13@gmail.com
 [2026-05-02 21:13:01][INFO]: Successful login attempt for email: jmsamante13@gmail.com
+[2026-05-03 10:27:58][INFO]: Failed login attempt for email: jmsamante13@gmail.com: Invalid email or password.
+[2026-05-03 10:28:04][INFO]: Successful login attempt for email: jmsamante13@gmail.com

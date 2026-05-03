@@ -257,6 +257,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             align-items: center;
             gap: 0.5rem;
             font-size: 1rem;
+            width: auto !important;       
+            max-width: none !important;   
         }
 
         .btn-primary {
@@ -324,8 +326,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 flex-direction: column;
             }
 
-            .btn {
-                width: 100%;
+            .form-actions .btn {
                 justify-content: center;
             }
         }

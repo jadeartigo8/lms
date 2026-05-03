@@ -59,7 +59,7 @@ textarea#noteArea:focus {
 
 /* Notepad Actions Buttons and Watch Folder */
 .notepad-actions {
-    display: flex;
+    display: block;
     gap: 10px;
     padding: 5px 10px;
     background-color: #f1f1f1;
